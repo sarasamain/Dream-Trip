@@ -12,6 +12,15 @@ function Categories() {
     'Shopping',
     'Food',
   ];
+  const url = 'https://source.unsplash.com';
+  const paths = [
+    '/bul_SMFjitw/1600x900',
+    '/X2W5Jml4flE/1600x900',
+    '/hXNGeAFOgT4/1600x900',
+    '/4g0XOeKt5ns/1600x900',
+    '/2TLREZi7BUg/1600x900',
+    '/N_Y88TWmGwA/1600x900',
+  ];
 
   return (
     <div className={classes.root}>
@@ -24,7 +33,7 @@ function Categories() {
         alignItems="center"
       >
         {categories.map((category) => {
-          const imgurl = `https://source.unsplash.com/1600x900/?${category}`;
+          const imgurl = `${url}${paths[categories.indexOf(category)]}`;
           return (
             <Grid item key={categories.indexOf(category)}>
               <SimpleCard title={category} imgUrl={imgurl} />
