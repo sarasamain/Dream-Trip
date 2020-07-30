@@ -26,6 +26,7 @@ export default function InfoForm() {
   const classes = useStyles();
   const [startDate, setStartDate] = useState(currentDate);
   const [endDate, setEndDate] = useState(currentDate);
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
