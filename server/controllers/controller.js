@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 require('dotenv').config();
+
 const fetchRequest = async (queries, option) => {
   const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${queries.type}+in+${queries.location}&key=${process.env.SECRET_API_KEY}`;
   return fetch(`${url}`, option)
