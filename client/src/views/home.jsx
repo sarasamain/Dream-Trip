@@ -1,11 +1,23 @@
 import React from 'react';
 import InfoForm from '../components/info-form';
 
-function Home() {
+function Home({
+  setStartDate,
+  setEndDate,
+  setDestination,
+  startDate,
+  endDate,
+  destination,
+}) {
   return (
-    <div className="Home">
-      <InfoForm />
-    </div>
+    <InfoForm
+      setStartDate={setStartDate}
+      setEndDate={setEndDate}
+      setDestination={setDestination}
+      startDate={startDate}
+      endDate={endDate}
+      destination={destination}
+    />
   );
 }
 

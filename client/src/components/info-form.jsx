@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import moment from 'moment';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DateInput from './date-input';
 import useStyles from '../styles/info-form';
+import { Link } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -21,11 +21,15 @@ function Copyright() {
   );
 }
 
-export default function InfoForm() {
-  const currentDate = moment();
+export default function InfoForm({
+  setStartDate,
+  setEndDate,
+  setDestination,
+  startDate,
+  endDate,
+  destination,
+}) {
   const classes = useStyles();
-  const [startDate, setStartDate] = useState(currentDate);
-  const [endDate, setEndDate] = useState(currentDate);
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -56,15 +60,17 @@ export default function InfoForm() {
               margin="normal"
               required
               fullWidth
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
               name="destination"
               label="destination"
               id="destination"
             />
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Clear all fields
-                </Link>
+                {/* <Link href="#" variant="body2"> */}
+                Clear all fields
+                {/* </Link> */}
               </Grid>
             </Grid>
             <Grid container justify="flex-end">
@@ -72,6 +78,8 @@ export default function InfoForm() {
                 type="submit"
                 variant="contained"
                 color="secondary"
+                component={Link}
+                to="/Categories"
                 className={classes.submit}
               >
                 Next
