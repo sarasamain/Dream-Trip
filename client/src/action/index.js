@@ -1,15 +1,11 @@
-export const setVisibilityFilter = (filter) => ({
-  type: 'SET_SELECTED_FILTER',
-  filter,
-});
+// let categoryId = 0;
+/* export const addCategory = (text) => ({
+  type: 'ADD_CATEGORY',
+  id: categoryId++,
+  text,
+}); */
 
-export const toggleCategory = (category) => ({
+export const toggleCategory = (id) => ({
   type: 'TOGGLE_CATEGORY',
-  id: 'category',
-  category,
+  id,
 });
-
-export const SelectedFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_SELECTED: 'SHOW_SELECTED',
-};

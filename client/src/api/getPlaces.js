@@ -1,6 +1,6 @@
-function getPlaces() {
+function getPlaces(path) {
   console.log('fetching data');
-  return fetchRequest('events');
+  return fetchRequest(path);
 }
 
 const fetchRequest = async (path, option) => {
