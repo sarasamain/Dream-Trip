@@ -11,6 +11,13 @@ function App() {
   const [startDate, setStartDate] = useState(moment());
   const [endDate, setEndDate] = useState(moment());
   const [destination, setDestination] = useState('');
+  const [places, setPlaces] = useState([]);
+
+  const addPlaces = (allPlaces) => {
+    console.log('before', places);
+    setPlaces((places) => [...places, ...allPlaces]);
+  };
+  console.log('after', places);
 
   return (
     <Router>
@@ -34,13 +41,18 @@ function App() {
           path="/PlacesList"
           render={() => (
             <PlacesList
+              places={places}
+              addPlaces={addPlaces}
               startDate={startDate}
               endDate={endDate}
               destination={destination}
             />
           )}
         />
-        <Route path="/MapItinerary" component={MapItinerary} />
+        <Route
+          path="/MapItinerary"
+          render={() => <MapItinerary places={places} />}
+        />
       </Switch>
     </Router>
   );
