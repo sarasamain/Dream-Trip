@@ -5,8 +5,6 @@ import classes from '../styles/categories';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
-/* import { toggleCategory } from '../action/index'; */
-
 function Categories() {
   return (
     <div className={classes.root}>

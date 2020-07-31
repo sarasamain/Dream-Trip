@@ -17,7 +17,7 @@ function App() {
       <Switch>
         <Route
           exact
-          path="/home"
+          path="/"
           render={() => (
             <Home
               setStartDate={setStartDate}
@@ -29,9 +29,8 @@ function App() {
             />
           )}
         />
-        <Route exact path="/Categories" component={Categories} />
+        <Route path="/Categories" component={Categories} />
         <Route
-          exact
           path="/PlacesList"
           render={() => (
             <PlacesList
@@ -41,7 +40,7 @@ function App() {
             />
           )}
         />
-        {/* <Route exact path="/MapItinerary" component={MapItinerary} /> */}
+        <Route path="/MapItinerary" component={MapItinerary} />
       </Switch>
     </Router>
   );
