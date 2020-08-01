@@ -14,7 +14,6 @@
     "date-fns": "^2.15.0",
     "dotenv": "^8.2.0",
     "google-map-react": "^2.0.4",
-    "google-maps-react": "^2.0.6",
     "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

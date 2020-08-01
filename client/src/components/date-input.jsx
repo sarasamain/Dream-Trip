@@ -14,7 +14,7 @@ export default function DateInput({ dateValue, handleDateChange, label }) {
         value={dateValue}
         placeholder="10/10/2018"
         onChange={(date) => handleDateChange(date)}
-        format="MM/dd/yyyy"
+        format="yyyy-MM-dd"
         InputLabelProps={{
           shrink: true,
         }}
