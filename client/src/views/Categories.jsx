@@ -8,22 +8,27 @@ import { Link } from 'react-router-dom';
 function Categories() {
   return (
     <div className={classes.root}>
-      <Grid
-        container
-        spacing={2}
-        direction="row"
-        wrap="wrap"
-        justify="center"
-        alignItems="center"
-      >
+      <Grid container spacing={2} direction="row" wrap="wrap" justify="center">
         <Grid item>
           <SimpleCard index={0} />
+        </Grid>
+        <Grid item>
           <SimpleCard index={1} />
+        </Grid>
+        <Grid item>
           <SimpleCard index={2} />
+        </Grid>
+        <Grid item>
           <SimpleCard index={3} />
+        </Grid>
+        <Grid item>
           <SimpleCard index={4} />
+        </Grid>
+        <Grid item>
           <SimpleCard index={5} />
         </Grid>
+      </Grid>
+      <Grid container justify="flex-end">
         <Button
           type="submit"
           variant="contained"

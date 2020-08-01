@@ -5,20 +5,24 @@ import DetailCard from '../components/detail-cards';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import useStyles from '../styles/info-form';
+import { moment } from 'moment';
 
-function PlacesList({
-  places,
-  addPlaces,
-  startDate,
-  endDate,
-  destination,
-  categoryStates,
-}) {
+function PlacesList({ places, addPlaces, destination, categoryStates }) {
   const classes = useStyles();
 
   const filterCategory = categoryStates.filter(
     (categoryState) => categoryState.selected
   );
+
+  /*   const numberOfPlacesEachCategory = function (startDate, endDate) {
+    // const start = moment(startDate, 'YYYY-MM-DD');
+    // const end = moment(endDate, 'YYYY-MM-DD');
+    const duration = endDate.diff(startDate, 'days');
+    return duration;
+  }; */
+
+  // console.log(numberOfPlacesEachCategory(startDate._d, endDate._d));
+  // console.log(moment(startDate._d));
 
   const loadPlaces = async (destination, category) => {
     getPlaces(`${destination}/${category}`).then((allPlaces) => {
@@ -35,7 +39,6 @@ function PlacesList({
 
   return (
     <div>
-      {console.log(places)}
       {places.map((place) => {
         return (
           <DetailCard
@@ -47,6 +50,7 @@ function PlacesList({
           />
         );
       })}
+
       <Link to="/MapItinerary" style={{ textDecoration: 'none' }}>
         <Button
           type="submit"
