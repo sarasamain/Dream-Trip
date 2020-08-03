@@ -10,13 +10,32 @@ const fetchRequest = async (queries, option) => {
 };
 
 exports.getPlaces = async (req, res) => {
+  const categoryArray={
+    "Arts&culture": ["museum", "art_gallery", "book_store", "university", "church"],
+    "Kids": ["aquarium", "amusement_park", "museum","art_gallery","university", "zoo","park"],
+    "Nature":["park", "zoo", "campground", "rv_park"],
+    "Sightseeing":["tourist_attraction"],
+    "Nightlife": ["night_club", "bar", "casino"],
+    "Shopping": ["shopping_mall", "clothing_store"],
+  }
   try {
-    const results = await fetchRequest({
-      type: req.params.type,
-      location: req.params.location,
-    });
+    let allResults={};
+    const types = categoryArray[req.params.type];
+ 
+    for (let type of types) {
+      const results = await fetchRequest({
+        type: type,
+        location: req.params.location,
+      });
+      for(let result of results.results){
+        let name = result.name;
+        if(allResults[name]) console.log(name);
+        if(!allResults[name]) allResults[name]=result;
+      }
+    }
+
     res.send(
-      results.results
+      Object.values(allResults)
         .filter(
           (place) =>
             parseInt(place.user_ratings_total) >= 500 &&
@@ -24,7 +43,7 @@ exports.getPlaces = async (req, res) => {
         )
         .sort(
           (a, b) =>
-            b.rating - a.rating || b.user_ratings_total - a.user_ratings_total
+          b.user_ratings_total - a.user_ratings_total || b.rating - a.rating
         )
     );
     res.status(200);

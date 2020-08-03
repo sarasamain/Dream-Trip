@@ -1,15 +1,8 @@
-/* 'Arts',
-    'Kids',
-    'Nature',
-    'Nightlife',
-    'Shopping',
-    'Food', */
-
 const categories = (
   state = [
     {
       id: 0,
-      text: 'Arts',
+      text: 'Arts&culture',
       selected: false,
     },
     {
@@ -34,7 +27,7 @@ const categories = (
     },
     {
       id: 5,
-      text: 'Food',
+      text: 'Sightseeing',
       selected: false,
     },
   ],

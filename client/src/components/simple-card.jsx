@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../styles/simple-card';
+import useStyles from '../styles/category-card';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { toggleCategory } from '../action';
+import '../styles/category-card.css';
 
 function SimpleCard({ index, categoryState, toggleCategory }) {
   const classes = useStyles();
@@ -23,23 +24,25 @@ function SimpleCard({ index, categoryState, toggleCategory }) {
   const imgurl = `${url}${paths[categoryState.id]}${sizePath}`;
 
   return (
-    <Card
-      className={classes.root}
-      onClick={() => toggleCategory(categoryState.id)}
-    >
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={imgurl}
-          title={categoryState.text}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {categoryState.text}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <div className={categoryState.selected ? 'category-card' : null}>
+      <Card
+        className={classes.root}
+        onClick={() => toggleCategory(categoryState.id)}
+      >
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={imgurl}
+            title={categoryState.text}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {categoryState.text}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </div>
   );
 }
 

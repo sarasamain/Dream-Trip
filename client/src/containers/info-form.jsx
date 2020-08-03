@@ -26,7 +26,6 @@ export default function InfoForm({
   setDestination,
   startDate,
   endDate,
-  destination,
 }) {
   const classes = useStyles();
 

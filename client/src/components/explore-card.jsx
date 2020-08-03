@@ -1,13 +1,23 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import useStyles from '../styles/explore-card';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
-export default function ExploreCard({ imgUrl, name, address, price, rating }) {
+export default function ExploreCard({
+  name,
+  address,
+  price,
+  rating,
+  id,
+  addPlace,
+}) {
   const classes = useStyles();
-
+  const handleAddPlace = () => {
+    addPlace(id);
+  };
   return (
     <Card className={classes.root}>
       <div className={classes.details}>
@@ -24,11 +34,9 @@ export default function ExploreCard({ imgUrl, name, address, price, rating }) {
           </Typography>
         </CardContent>
       </div>
-      {/*     <CardMedia
-        className={classes.cover}
-        image={`${imgUrl}`}
-        title="Live from space album cover"
-      /> */}
+      <Fab color="primary" aria-label="add">
+        <AddIcon onClick={handleAddPlace} />
+      </Fab>
     </Card>
   );
 }

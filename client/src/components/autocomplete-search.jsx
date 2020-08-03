@@ -38,7 +38,6 @@ async function handlePlaceSelect(updateQuery, setDestination) {
   const query = addressObject.formatted_address;
   updateQuery(query);
   setDestination(() => query);
-  console.log(addressObject);
 }
 
 function SearchLocationInput({ setDestination }) {
@@ -50,7 +49,7 @@ function SearchLocationInput({ setDestination }) {
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&libraries=places`,
       () => handleScriptLoad(setQuery, autoCompleteRef, setDestination)
     );
-  }, []);
+  }, [setDestination]);
 
   return (
     <div className="search-location">

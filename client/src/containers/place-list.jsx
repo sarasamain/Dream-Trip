@@ -6,7 +6,7 @@ import DetailCard from '../components/detail-cards';
 import Typography from '@material-ui/core/Typography';
 import useStyles from '../styles/place-list';
 
-export default function PlaceList({ places, xs }) {
+export default function PlaceList({ places, xs, removePlace }) {
   const classes = useStyles();
 
   return (
@@ -15,15 +15,18 @@ export default function PlaceList({ places, xs }) {
         <Typography component="h5" variant="h5">
           Your List of Places is Here!
         </Typography>
-        {places.map((place) => {
+        {Object.values(places).map((place) => {
           return (
             <Grid item>
               <DetailCard
+                removePlace={removePlace}
                 key={place.place_id}
+                id={place.place_id}
                 name={place.name}
                 address={place.formatted_address}
                 price={place.price_level}
                 rating={place.rating}
+                // {place.photos[0]? imgUrl={place.photos[0].photo_reference}: null}
               />
             </Grid>
           );

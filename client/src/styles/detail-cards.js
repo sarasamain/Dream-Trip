@@ -1,13 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     maxWidth: 600,
     justifyContent: 'space-between',
   },
   details: {
-    display: 'flex',
+    display: 'flex-start',
     flexDirection: 'column',
   },
   content: {
@@ -16,6 +16,9 @@ const useStyles = makeStyles({
   cover: {
     width: 151,
   },
-});
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
 export default useStyles;
