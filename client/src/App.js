@@ -14,10 +14,8 @@ function App() {
   const [places, setPlaces] = useState([]);
 
   const addPlaces = (allPlaces) => {
-    console.log('before', places);
     setPlaces((places) => [...places, ...allPlaces]);
   };
-  console.log('after', places);
 
   return (
     <Router>

@@ -12,7 +12,7 @@ export default function ExploreCard({ imgUrl, name, address, price, rating }) {
     <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
+          <Typography component="h6" variant="h6">
             {name}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">

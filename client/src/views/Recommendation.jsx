@@ -51,6 +51,7 @@ function PlacesList({
 
   return (
     <div>
+      {console.log(destination)}
       <Grid container direction="row">
         <PlaceList places={places} xs={6} />
         <Grid item xs={6}>

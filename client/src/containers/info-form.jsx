@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import DateInput from '../components/date-input';
 import useStyles from '../styles/place-list';
 import { Link } from 'react-router-dom';
+import AutocompleteSearch from '../components/autocomplete-search';
 
 function Copyright() {
   return (
@@ -54,17 +54,8 @@ export default function InfoForm({
           </Grid>
 
           <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
-              name="destination"
-              label="destination"
-              id="destination"
-            />
+            <AutocompleteSearch setDestination={setDestination} />
+
             <Grid container>
               <Grid item xs>
                 {/* <Link href="#" variant="body2"> */}
