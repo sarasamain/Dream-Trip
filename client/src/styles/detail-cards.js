@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex-start',
     flexDirection: 'column',
   },
+  button: {
+    display: 'flex-end',
+  },
   content: {
     flex: '1 0 auto',
   },

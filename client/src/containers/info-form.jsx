@@ -35,9 +35,11 @@ export default function InfoForm({
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Typography component="h1" variant="h5" paragraph={true}>
-            Start planning your trip!
-          </Typography>
+          <div style={{ margin: '70px' }}>
+            <Typography component="h1" variant="h3" paragraph={true}>
+              Start planning your trip ✈️
+            </Typography>
+          </div>
 
           <Grid container justify="space-around">
             <DateInput
@@ -54,14 +56,6 @@ export default function InfoForm({
 
           <form className={classes.form} noValidate>
             <AutocompleteSearch setDestination={setDestination} />
-
-            <Grid container>
-              <Grid item xs>
-                {/* <Link href="#" variant="body2"> */}
-                Clear all fields
-                {/* </Link> */}
-              </Grid>
-            </Grid>
             <Grid container justify="flex-end">
               <Button
                 type="submit"

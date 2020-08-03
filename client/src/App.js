@@ -33,7 +33,6 @@ function App({ categoryStates }) {
   };
 
   const loadPlaces = async (destination, category) => {
-    console.log(destination, category);
     getPlaces(`${destination}/${category}`).then((allPlaces) => {
       let extraPlaces = allPlaces.slice(
         Math.min(allPlaces.length, numberOfPlacesPerCategory())
@@ -73,7 +72,6 @@ function App({ categoryStates }) {
   };
 
   useEffect(() => {
-    console.log('inside filter category');
     filteredCategories.map((categoryObj) => {
       let category = categoryObj.text;
       return loadPlaces(destination, category);

@@ -37,10 +37,10 @@ export default function DetailCard({
               {address}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              {price}
+              $: {price}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              {rating}
+              ⭐️: {rating}
             </Typography>
           </CardContent>
         </div>

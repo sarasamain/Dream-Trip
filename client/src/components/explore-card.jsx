@@ -25,18 +25,19 @@ export default function ExploreCard({
           <Typography component="h6" variant="h6">
             {name}
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography variant="body2" color="textSecondary">
             {address}
           </Typography>
-          <Typography variant="subtitle2" color="textSecondary">
-            {price}
-            {rating}
+          <Typography variant="body2" color="textSecondary">
+            $: {price} ⭐️: {rating}
           </Typography>
         </CardContent>
       </div>
-      <Fab color="primary" aria-label="add">
-        <AddIcon onClick={handleAddPlace} />
-      </Fab>
+      <div className={classes.button}>
+        <Fab color="primary" aria-label="add">
+          <AddIcon onClick={handleAddPlace} />
+        </Fab>
+      </div>
     </Card>
   );
 }

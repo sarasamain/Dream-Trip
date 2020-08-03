@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
     maxWidth: 200,
-    width: '150px',
+    width: '200px',
     height: '300px',
     '& > *': {
       margin: theme.spacing(1),
