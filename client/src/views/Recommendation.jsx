@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getPlaces } from '../api/getPlaces';
-import DetailCard from '../components/detail-cards';
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import useStyles from '../styles/info-form';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import ExploreCard from '../components/explore-card';
+import PlaceList from '../containers/place-list';
 
 function PlacesList({
   startDate,
@@ -18,7 +15,6 @@ function PlacesList({
   destination,
   categoryStates,
 }) {
-  const classes = useStyles();
   const [exploreplaces, setExplorePlaces] = useState([]);
 
   const filterCategory = categoryStates.filter(
@@ -55,58 +51,29 @@ function PlacesList({
 
   return (
     <div>
-      <Typography component="h5" variant="h5">
-        Your List of Places is Here!
-      </Typography>
-      <Grid container spacing={2} direction="column">
-        {places.map((place) => {
-          return (
-            <Grid item>
-              <DetailCard
-                key={place.place_id}
-                name={place.name}
-                address={place.formatted_address}
-                price={place.price_level}
-                rating={place.rating}
-              />
-            </Grid>
-          );
-        })}
+      <Grid container direction="row">
+        <PlaceList places={places} xs={6} />
+        <Grid item xs={6}>
+          <Typography component="h5" variant="h5">
+            Explore
+          </Typography>
+          <Grid container direction="row" wrap="wrap" spacing={2}>
+            {exploreplaces.map((exploreplace) => {
+              return (
+                <Grid item xs={3} sm={3}>
+                  <ExploreCard
+                    key={exploreplace.place_id}
+                    name={exploreplace.name}
+                    address={exploreplace.formatted_address}
+                    price={exploreplace.price_level}
+                    rating={exploreplace.rating}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Grid>
       </Grid>
-
-      <Grid
-        container
-        spacing={2}
-        direction="row"
-        wrap="wrap"
-        justify="flex-end"
-      >
-        {exploreplaces.map((exploreplace) => {
-          console.log(exploreplace);
-          return (
-            <Grid item>
-              <ExploreCard
-                key={exploreplace.place_id}
-                name={exploreplace.name}
-                address={exploreplace.formatted_address}
-                price={exploreplace.price_level}
-                rating={exploreplace.rating}
-              />
-            </Grid>
-          );
-        })}
-      </Grid>
-
-      <Link to="/MapItinerary" style={{ textDecoration: 'none' }}>
-        <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          className={classes.submit}
-        >
-          Next
-        </Button>
-      </Link>
     </div>
   );
 }

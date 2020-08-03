@@ -1,5 +1,5 @@
 import React from 'react';
-import InfoForm from '../components/info-form';
+import InfoForm from '../containers/info-form';
 
 function Home({
   setStartDate,

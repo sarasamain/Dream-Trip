@@ -5,7 +5,7 @@ import Home from './views/home';
 import moment from 'moment';
 import Categories from './views/Categories';
 import MapItinerary from './views/MapItinerary';
-import PlacesList from './views/PlacesList';
+import Recommendation from './views/Recommendation';
 
 function App() {
   const [startDate, setStartDate] = useState(moment());
@@ -38,9 +38,9 @@ function App() {
         />
         <Route path="/Categories" component={Categories} />
         <Route
-          path="/PlacesList"
+          path="/Recommendation"
           render={() => (
-            <PlacesList
+            <Recommendation
               places={places}
               addPlaces={addPlaces}
               startDate={startDate}

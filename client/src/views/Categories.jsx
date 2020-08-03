@@ -34,7 +34,7 @@ function Categories() {
           variant="contained"
           color="secondary"
           component={Link}
-          to="/Placeslist"
+          to="/Recommendation"
           className={classes.submit}
         >
           Next

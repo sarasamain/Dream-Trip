@@ -1,6 +1,15 @@
 import React from 'react';
-import { MarkerStyle } from '../styles/map-marker';
+import '../styles/map-marker.css';
 
-export default function MapMarker({ text }) {
-  return <div style={MarkerStyle}>{text}</div>;
-}
+const MapMarker = ({ text, $hover, mouseEnter }) => {
+  return (
+    <div
+      className={$hover ? 'circle hover' : 'circle'}
+      // onMouseEnter={mouseEnter(Number(text))}
+    >
+      <span className="circleText">{text}</span>
+    </div>
+  );
+};
+
+export default MapMarker;

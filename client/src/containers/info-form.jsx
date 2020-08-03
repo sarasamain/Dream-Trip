@@ -6,8 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import DateInput from './date-input';
-import useStyles from '../styles/info-form';
+import DateInput from '../components/date-input';
+import useStyles from '../styles/place-list';
 import { Link } from 'react-router-dom';
 
 function Copyright() {
