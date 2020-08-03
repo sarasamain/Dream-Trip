@@ -26,7 +26,7 @@ export default function PlaceList({ places, xs, removePlace }) {
                 address={place.formatted_address}
                 price={place.price_level}
                 rating={place.rating}
-                // {place.photos[0]? imgUrl={place.photos[0].photo_reference}: null}
+                imgUrl={place.photos[0].photo_reference}
               />
             </Grid>
           );
