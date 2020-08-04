@@ -37,7 +37,10 @@ export default function InfoForm({
         <div className={classes.paper}>
           <div style={{ margin: '70px' }}>
             <Typography component="h1" variant="h3" paragraph={true}>
-              Start planning your trip ✈️
+              Start planning your trip{' '}
+              <span role="img" aria-label="plane">
+                ✈️
+              </span>
             </Typography>
           </div>
 

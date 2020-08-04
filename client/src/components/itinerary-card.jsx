@@ -18,17 +18,31 @@ export default function ItineraryCard({
   price,
   rating,
   removePlace,
-  day,
   id,
+  tripDuration,
+  assignDay,
+  assignedDay,
 }) {
   const classes = useStyles();
   const deletePlace = () => {
     removePlace(id);
   };
 
+  const duration = tripDuration();
+  const days = [];
+
+  for (let i = 1; i <= duration; i++) {
+    days.push(i);
+  }
+
+  const handleChange = (event) => {
+    const newDay = event.target.value;
+    console.log('id', id, 'day', newDay);
+    assignDay(newDay, id);
+  };
+
   return (
     <div className="detail-card">
-      {console.log('ItineraryCard')}
       <Card className={classes.root}>
         <IconButton aria-label="delete" className={classes.margin}>
           <DeleteIcon fontSize="small" onClick={deletePlace} />
@@ -45,24 +59,23 @@ export default function ItineraryCard({
               $: {price}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              ⭐️: {rating}
+              <span role="img" aria-label="star">
+                ⭐️
+              </span>
+              : {rating}
             </Typography>
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel htmlFor="outlined-age-native-simple">DAY</InputLabel>
               <Select
                 native
-                value={day}
-                // onChange={handleChange}
+                value={assignedDay}
+                onChange={handleChange}
                 label="Day"
-                /*       inputProps={{
-              name: 'age',
-              id: 'outlined-age-native-simple',
-            }} */
               >
                 <option aria-label="None" value="" />
-                <option value={10}>Ten</option>
-                <option value={20}>Twenty</option>
-                <option value={30}>Thirty</option>
+                {days.map((day) => {
+                  return <option value={day}>{day}</option>;
+                })}
               </Select>
             </FormControl>
           </CardContent>

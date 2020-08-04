@@ -30,10 +30,14 @@ function App({ categoryStates }) {
   }, [categoryStates]);
 
   const placesPerType = () => {
+    const duration = tripDuration();
+    return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
+  };
+
+  const tripDuration = () => {
     const momentStart = moment(startDate);
     const momentEnd = moment(endDate);
-    const duration = momentEnd.diff(momentStart, 'days');
-    return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
+    return momentEnd.diff(momentStart, 'days') + 1;
   };
 
   const loadPlaces = () => {
@@ -48,7 +52,11 @@ function App({ categoryStates }) {
           const exploreEntites = extraPlaces.reduce((acc, place) => {
             return {
               ...acc,
-              [place.place_id]: Object.assign(place, { inMyList: false }),
+              [place.place_id]: Object.assign(
+                place,
+                { inMyList: false },
+                { day: 0 }
+              ),
             };
           }, {});
           setPlaceEntities(Object.assign(placeEntities, exploreEntites));
@@ -57,7 +65,11 @@ function App({ categoryStates }) {
           const newEntites = recommendedPlaces.reduce((acc, place) => {
             return {
               ...acc,
-              [place.place_id]: Object.assign(place, { inMyList: true }),
+              [place.place_id]: Object.assign(
+                place,
+                { inMyList: true },
+                { day: 0 }
+              ),
             };
           }, {});
 
@@ -102,6 +114,12 @@ function App({ categoryStates }) {
     setExplorePlaces([...exploreplaces, place_id]);
   };
 
+  const handleAsssignDay = (day, id) => {
+    const newEntities = { ...placeEntities };
+    newEntities[id].day = day;
+    setPlaceEntities(newEntities);
+  };
+
   return (
     <Router>
       <Switch>
@@ -138,6 +156,8 @@ function App({ categoryStates }) {
             <MapItinerary
               places={places.map((id) => placeEntities[id])}
               removePlace={removePlace}
+              tripDuration={tripDuration}
+              handleAsssignDay={handleAsssignDay}
             />
           )}
         />

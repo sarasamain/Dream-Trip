@@ -40,7 +40,10 @@ export default function DetailCard({
               $: {price}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              ⭐️: {rating}
+              <span role="img" aria-label="star">
+                ⭐️
+              </span>
+              : {rating}
             </Typography>
           </CardContent>
         </div>

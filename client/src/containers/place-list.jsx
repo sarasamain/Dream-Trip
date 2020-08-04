@@ -1,29 +1,14 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import DetailCard from '../components/detail-cards';
-import ItineraryCard from '../components/itinerary-card';
 
-export default function PlaceList({ places, removePlace, itinerary }) {
+export default function PlaceList({ places, removePlace }) {
   let uniquePlaces = new Set(Object.values(places));
-  let count = 0;
+
   return (
     <Grid container direction="column" spacing={2}>
       {[...uniquePlaces].map((place) => {
-        count++;
-        return itinerary ? (
-          <Grid item>
-            <ItineraryCard
-              removePlace={removePlace}
-              key={place.place_id}
-              id={place.place_id}
-              name={`${count}. ${place.name}`}
-              address={place.formatted_address}
-              price={place.price_level}
-              rating={place.rating}
-              imgUrl={place.photos[0].photo_reference}
-            />
-          </Grid>
-        ) : (
+        return (
           <Grid item>
             <DetailCard
               removePlace={removePlace}
