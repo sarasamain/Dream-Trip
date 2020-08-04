@@ -29,11 +29,10 @@ function App({ categoryStates }) {
     setCategories(filterCategory);
   }, [categoryStates]);
 
-  let duration = 0;
   const placesPerType = () => {
     const momentStart = moment(startDate);
     const momentEnd = moment(endDate);
-    duration = momentEnd.diff(momentStart, 'days');
+    const duration = momentEnd.diff(momentStart, 'days');
     return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
   };
 
@@ -139,7 +138,6 @@ function App({ categoryStates }) {
             <MapItinerary
               places={places.map((id) => placeEntities[id])}
               removePlace={removePlace}
-              duration={duration}
             />
           )}
         />
