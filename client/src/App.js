@@ -25,55 +25,57 @@ function App({ categoryStates }) {
     setCategories(filterCategory);
   }, [categoryStates]);
 
-  const numberOfPlacesPerCategory = () => {
+  const placesPerType = () => {
     const momentStart = moment(startDate);
     const momentEnd = moment(endDate);
     const duration = momentEnd.diff(momentStart, 'days');
     return Math.ceil(((duration + 1) * 3) / filteredCategories.length);
   };
 
-  const loadPlaces = async (destination, category) => {
-    getPlaces(`${destination}/${category}`).then((allPlaces) => {
-      let extraPlaces = allPlaces.slice(
-        Math.min(allPlaces.length, numberOfPlacesPerCategory())
-      );
-      const exploreEntites = extraPlaces.reduce((acc, place) => {
-        return {
-          ...acc,
-          [place.place_id]: Object.assign(place, { inMyList: false }),
-        };
-      }, {});
-      setPlaceEntities(Object.assign(placeEntities, exploreEntites));
-
-      let recommendedPlaces = allPlaces.slice(
-        0,
-        Math.min(allPlaces.length, numberOfPlacesPerCategory())
-      );
-      const newEntites = recommendedPlaces.reduce((acc, place) => {
-        return {
-          ...acc,
-          [place.place_id]: Object.assign(place, { inMyList: true }),
-        };
-      }, {});
-      setPlaceEntities(Object.assign(placeEntities, newEntites));
-      const placeIds = Object.keys(placeEntities);
-      const newPlacesOnList = placeIds.filter((placeKey) => {
-        return placeEntities[placeKey].inMyList === true;
-      });
-      const newExplorePlaces = placeIds.filter((placeKey) => {
-        return placeEntities[placeKey].inMyList === false;
-      });
-      setPlaces((places) => [...places, ...newPlacesOnList]);
-      setExplorePlaces((exploreplaces) => [
-        ...exploreplaces,
-        ...newExplorePlaces,
-      ]);
-    });
-  };
-
   useEffect(() => {
     filteredCategories.map((categoryObj) => {
       let category = categoryObj.text;
+      const loadPlaces = async (destination, category) => {
+        getPlaces(`${destination}/${category}`).then((allPlaces) => {
+          const len = allPlaces.length;
+          const placeNum = placesPerType();
+
+          let extraPlaces = allPlaces.slice(Math.min(len, placeNum));
+          const exploreEntites = extraPlaces.reduce((acc, place) => {
+            return {
+              ...acc,
+              [place.place_id]: Object.assign(place, { inMyList: false }),
+            };
+          }, {});
+          setPlaceEntities(Object.assign(placeEntities, exploreEntites));
+
+          let recommendedPlaces = allPlaces.slice(0, Math.min(len, placeNum));
+          const newEntites = recommendedPlaces.reduce((acc, place) => {
+            return {
+              ...acc,
+              [place.place_id]: Object.assign(place, { inMyList: true }),
+            };
+          }, {});
+
+          setPlaceEntities(Object.assign(placeEntities, newEntites));
+
+          const placeIds = Object.keys(placeEntities);
+
+          const newPlacesOnList = placeIds.filter((placeKey) => {
+            return placeEntities[placeKey].inMyList === true;
+          });
+
+          const newExplorePlaces = placeIds.filter((placeKey) => {
+            return placeEntities[placeKey].inMyList === false;
+          });
+
+          setPlaces((places) => [...places, ...newPlacesOnList]);
+          setExplorePlaces((exploreplaces) => [
+            ...exploreplaces,
+            ...newExplorePlaces,
+          ]);
+        });
+      };
       return loadPlaces(destination, category);
     });
   }, [filteredCategories]);

@@ -26,7 +26,7 @@ export default function TopBar({ heading, buttonPath }) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="white">
+      <AppBar position="static" color="transparent">
         <Toolbar>
           <IconButton
             edge="start"

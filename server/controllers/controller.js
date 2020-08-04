@@ -19,7 +19,7 @@ exports.getPlaces = async (req, res) => {
     "Shopping": ["shopping_mall", "clothing_store"],
   }
   try {
-    let allResults={};
+    let allResults=[];
     const types = categoryArray[req.params.type];
  
     for (let type of types) {
@@ -27,15 +27,17 @@ exports.getPlaces = async (req, res) => {
         type: type,
         location: req.params.location,
       });
-      for(let result of results.results){
+     /*  for(let result of results.results){
         let name = result.name;
         if(allResults[name]) console.log(name);
         if(!allResults[name]) allResults[name]=result;
-      }
+      } */
+      allResults = [...allResults, ...results.results];
     }
-
+    const allResultsSet = new Set(allResults);
+    console.log(allResultsSet);
     res.send(
-      Object.values(allResults)
+      [...allResultsSet]
         .filter(
           (place) =>
             parseInt(place.user_ratings_total) >= 500 &&
