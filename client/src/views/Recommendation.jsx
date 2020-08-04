@@ -1,21 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ExploreCard from '../components/explore-card';
 import PlaceList from '../containers/place-list';
 import TopBar from '../components/top-bar';
+import classes from '../styles/recommendation';
 
-function PlacesList({ places, addPlace, exploreplaces, removePlace }) {
+function PlacesList({
+  places,
+  addPlace,
+  exploreplaces,
+  removePlace,
+  loadPlaces,
+}) {
+  useEffect(() => {
+    loadPlaces();
+  }, []);
+
+  let uniquePlaces = new Set(Object.values(exploreplaces));
+
   return (
-    <div>
-      <TopBar heading="Recommendations" buttonPath="/MapItinerary" />
+    <div className={classes.root}>
+      <TopBar
+        heading="Recommendations"
+        buttonPath="/MapItinerary"
+        buttonName="Next"
+      />
       <div style={{ padding: 30 }}>
         <Grid container direction="row" spacing={10}>
           <Grid item xs={6}>
             <Typography component="h4" variant="h4" paragraph={true}>
-              Your List of Places is Here!
+              Our recommendations for you is Here:
             </Typography>
             <PlaceList
+              key="PlaceList"
               places={places}
               removePlace={removePlace}
               addPlace={addPlace}
@@ -23,12 +41,19 @@ function PlacesList({ places, addPlace, exploreplaces, removePlace }) {
           </Grid>
           <Grid item xs={6}>
             <Typography component="h4" variant="h4" paragraph={true}>
-              Explore
+              You might also like..
             </Typography>
-            <Grid container direction="row" wrap="wrap" spacing={10}>
-              {Object.values(exploreplaces).map((exploreplace) => {
+            <Grid
+              container
+              direction="row"
+              wrap="wrap"
+              justify="center"
+              display="flex"
+              spacing={2}
+            >
+              {[...uniquePlaces].map((exploreplace) => {
                 return (
-                  <Grid item xs={6} sm={3}>
+                  <Grid item>
                     <ExploreCard
                       key={exploreplace.place_id}
                       name={exploreplace.name}

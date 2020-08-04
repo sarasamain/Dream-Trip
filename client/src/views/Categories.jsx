@@ -7,7 +7,11 @@ import TopBar from '../components/top-bar';
 function Categories() {
   return (
     <div className={classes.root}>
-      <TopBar heading="Categories" buttonPath="/Recommendation" />
+      <TopBar
+        heading="Categories"
+        buttonPath="/Recommendation"
+        buttonName="Next"
+      />
       <div style={{ padding: 30 }}>
         <Grid
           container

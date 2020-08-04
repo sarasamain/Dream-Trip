@@ -2,19 +2,16 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import MapMarker from './map-marker';
 
-function SimpleMap({ places }) {
+function SimpleMap({ uniquePlaces }) {
   let count = 0;
+  console.log(uniquePlaces);
   const defaultProps = {
     center: {
-      lat: places[0].geometry.location.lat,
-      lng: places[0].geometry.location.lng,
+      lat: uniquePlaces[0].geometry.location.lat,
+      lng: uniquePlaces[0].geometry.location.lng,
     },
     zoom: 12,
   };
-
-  /*   const mouseEnter = (count) => {
-    console.log(count, places[count]);
-  }; */
 
   const K_MARGIN_TOP = 30;
   const K_MARGIN_RIGHT = 30;
@@ -22,14 +19,14 @@ function SimpleMap({ places }) {
   const K_MARGIN_LEFT = 30;
 
   return (
-    <div style={{ height: '700px', width: '600px' }}>
+    <div style={{ height: '650px', width: '600px' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         margin={[K_MARGIN_TOP, K_MARGIN_RIGHT, K_MARGIN_BOTTOM, K_MARGIN_LEFT]}
       >
-        {places.map((place) => {
+        {uniquePlaces.map((place) => {
           count++;
           return (
             <MapMarker
@@ -37,7 +34,6 @@ function SimpleMap({ places }) {
               lat={place.geometry.location.lat}
               lng={place.geometry.location.lng}
               text={count}
-              // mouseEnter={mouseEnter}
             />
           );
         })}

@@ -13,6 +13,13 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 200,
   },
+  button: {
+    display: 'flex-end',
+    height: '250px',
+  },
+  details: {
+    height: 200,
+  },
 }));
 
 export default useStyles;

@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Map from '../components/map';
 import PlaceList from '../containers/place-list';
 import Grid from '@material-ui/core/Grid';
 import TopBar from '../components/top-bar';
-// import DragDrop from '../components/drag-drop';
 
-function MapItinerary({ places, removePlace }) {
-  console.log(places);
+function MapItinerary({ places, removePlace, duration }) {
+  let uniquePlaces = new Set(Object.values(places));
+  uniquePlaces = [...uniquePlaces];
+  const [itineraryPlaces, setItineraryPlaces] = useState([]);
+  setItineraryPlaces(uniquePlaces);
+
   return (
     <div>
-      <TopBar heading="Map" buttonPath="/MapItinerary" />
+      <TopBar heading="Map" buttonPath="/MapItinerary" buttonName="Email Me" />
       <Grid container direction="row">
         <Grid item xs={6}>
-          <Map places={places} />
+          <Map uniquePlaces={uniquePlaces} />
         </Grid>
-        {/*    <Grid item xs={3}>
-          <DragDrop place={places[Object.keys(places)[0]]} />
-        </Grid> */}
         <Grid item xs={6}>
           <div style={{ padding: 30 }}>
-            <PlaceList places={places} xs={3} removePlace={removePlace} />
+            <PlaceList
+              places={itineraryPlaces}
+              itinerary={true}
+              removePlace={removePlace}
+              duration={duration}
+            />
           </div>
         </Grid>
       </Grid>

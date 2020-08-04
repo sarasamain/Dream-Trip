@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TopBar({ heading, buttonPath }) {
+export default function TopBar({ heading, buttonPath, buttonName }) {
   const classes = useStyles();
 
   return (
@@ -50,7 +50,7 @@ export default function TopBar({ heading, buttonPath }) {
             to={buttonPath}
             className={classes.submit}
           >
-            Next
+            {buttonName}
           </Button>
         </Toolbar>
       </AppBar>

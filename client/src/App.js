@@ -19,23 +19,28 @@ function App({ categoryStates }) {
   const [filteredCategories, setCategories] = useState([]);
 
   useEffect(() => {
-    const filterCategory = categoryStates.filter(
-      (categoryState) => categoryState.selected
-    );
+    setPlaceEntities({});
+  }, []);
+
+  useEffect(() => {
+    const filterCategory = categoryStates
+      .filter((categoryState) => categoryState.selected)
+      .map((categoryState) => categoryState.text);
     setCategories(filterCategory);
   }, [categoryStates]);
 
+  let duration = 0;
   const placesPerType = () => {
     const momentStart = moment(startDate);
     const momentEnd = moment(endDate);
-    const duration = momentEnd.diff(momentStart, 'days');
-    return Math.ceil(((duration + 1) * 3) / filteredCategories.length);
+    duration = momentEnd.diff(momentStart, 'days');
+    return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
   };
 
-  useEffect(() => {
-    filteredCategories.map((categoryObj) => {
-      let category = categoryObj.text;
-      const loadPlaces = async (destination, category) => {
+  const loadPlaces = () => {
+    filteredCategories.map((category) => {
+      console.log(category);
+      const loadPlacesPerCategory = async (destination, category) => {
         getPlaces(`${destination}/${category}`).then((allPlaces) => {
           const len = allPlaces.length;
           const placeNum = placesPerType();
@@ -76,9 +81,9 @@ function App({ categoryStates }) {
           ]);
         });
       };
-      return loadPlaces(destination, category);
+      return loadPlacesPerCategory(destination, category);
     });
-  }, [filteredCategories]);
+  };
 
   const helper = (place_id, trueOrFalse) => {
     const newEntities = { ...placeEntities };
@@ -120,6 +125,7 @@ function App({ categoryStates }) {
           path="/Recommendation"
           render={() => (
             <Recommendation
+              loadPlaces={loadPlaces}
               places={places.map((id) => placeEntities[id])}
               exploreplaces={exploreplaces.map((id) => placeEntities[id])}
               addPlace={addPlace}
@@ -133,6 +139,7 @@ function App({ categoryStates }) {
             <MapItinerary
               places={places.map((id) => placeEntities[id])}
               removePlace={removePlace}
+              duration={duration}
             />
           )}
         />

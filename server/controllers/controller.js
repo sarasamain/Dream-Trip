@@ -27,11 +27,6 @@ exports.getPlaces = async (req, res) => {
         type: type,
         location: req.params.location,
       });
-     /*  for(let result of results.results){
-        let name = result.name;
-        if(allResults[name]) console.log(name);
-        if(!allResults[name]) allResults[name]=result;
-      } */
       allResults = [...allResults, ...results.results];
     }
     const allResultsSet = new Set(allResults);
