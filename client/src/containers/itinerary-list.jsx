@@ -13,7 +13,6 @@ export default function ItineraryList({
   return (
     <Grid container direction="column" spacing={2}>
       {uniquePlaces
-        .sort((a, b) => a.day - b.day)
         .map((place) => {
           count++;
           return (
@@ -33,7 +32,8 @@ export default function ItineraryList({
               />
             </Grid>
           );
-        })}
+        })
+        .sort((a, b) => a.day - b.day)}
     </Grid>
   );
 }

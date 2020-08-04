@@ -29,7 +29,7 @@ function PlacesList({
       <div style={{ padding: 30 }}>
         <Grid container direction="row" spacing={10}>
           <Grid item xs={6}>
-            <Typography component="h4" variant="h4" paragraph={true}>
+            <Typography component="h5" variant="h5" paragraph={true}>
               Our recommendations for you is Here:
             </Typography>
             <PlaceList
@@ -40,7 +40,7 @@ function PlacesList({
             />
           </Grid>
           <Grid item xs={6}>
-            <Typography component="h4" variant="h4" paragraph={true}>
+            <Typography component="h5" variant="h5" paragraph={true}>
               You might also like..
             </Typography>
             <Grid

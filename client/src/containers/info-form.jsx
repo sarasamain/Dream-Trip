@@ -12,11 +12,16 @@ import AutocompleteSearch from '../components/autocomplete-search';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © DreamTrip '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+    <div>
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © DreamTrip '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Photo by Peter Thomas on Unsplash'}
+      </Typography>
+    </div>
   );
 }
 
