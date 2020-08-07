@@ -8,51 +8,48 @@ import {
 } from "@testing-library/react";
 import ItineraryCard from './components/itinerary-card';
 
-const sum = require('./sum');
-
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
-
-test('adds 2 + 2 to equal 4', () => {
-  expect(sum(2, 2)).toBe(4);
-});
+const data = {
+  imgUrl:"CmRaAAAAzI4cd_98WZAOOxZOdlMpxlGm2IkPofDqVAY9ReynfY…vXhk9WRhVUxT-4TDewGhSj4TgCCcEejHC93AZ59Q818NYUgA",
+  name: "4. Tower Bridge",
+  address: "Tower Bridge Rd, London SE1 2UP, United Kingdom",
+  price:"", 
+  rating: 4.7, 
+  removePlace: null,
+  id:"ChIJSdtli0MDdkgRLW9aCBpCeJ4",
+  tripDuration: () => 5,
+  assignDay: null,
+  assignedDay:"1",
+}
 
 describe('ItineraryCard', () => {
   it('displays the right day in the card', () => {
     render(<ItineraryCard 
-      imgUrl="CmRaAAAAzI4cd_98WZAOOxZOdlMpxlGm2IkPofDqVAY9ReynfY…vXbhk9WRhVUxT-4TDewGhSj4TgCCcEejHC93AZ59Q818NYUgA" 
-      name= "4. Tower Bridge" 
-      address= "Tower Bridge Rd, London SE1 2UP, United Kingdom" 
-      price="" 
-      rating={4.7} 
-      removePlace={null}
-      id="ChIJSdtli0MDdkgRLW9aCBpCeJ4"
-      tripDuration={() => 5}
-      assignDay={null} 
+      imgUrl={data.imgUrl}
+      name=  {data.name}
+      address= {data.address}
+      price= {data.price}
+      rating={data.rating}
+      removePlace={data.removePlace}
+      id={data.id}
+      tripDuration={data.tripDuration}
+      assignDay={data.assignDay}
       assignedDay="1"
     />)
 
-    expect(screen.getByDisplayValue('1')).toBeInTheDocument();
+    expect(screen.getByDisplayValue("1")).toBeInTheDocument();
     // expect(assignedDay).toBeTruthy();+
   });
-  // it('displays the right day in the card', () => {
-  //   const onChange = jest.fn();
-  //   render(<ItineraryCard onChange={onChange} assignedDay="1"></ItineraryCard>)
+  // it('Calls back when value changes', () => {
+  //     const onChange = jest.fn();
 
-    // expect(screen.getByDisplayValue(1)).toBeInTheDocument();
-    // expect(assignedDay).toBeTruthy();
   // })
 })
+// it('displays the right day in the card', () => {
+//   render(<ItineraryCard onChange={onChange} assignedDay="1"></ItineraryCard>)
 
-
-// describe("SearchBar", () => {
-
-//   it("displays the right value", () => {
-//     render(<SearchBar query={"the meaning of life"} onChange={null} />);
-
-//     expect(screen.getByDisplayValue("the meaning of life")).toBeInTheDocument();
-//   });
+  // expect(screen.getByDisplayValue(1)).toBeInTheDocument();
+  // expect(assignedDay).toBeTruthy();
+// })
 
 
 // it("calls back when value changes", () => {
