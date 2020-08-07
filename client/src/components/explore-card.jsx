@@ -33,9 +33,9 @@ export default function ExploreCard({
           </Typography>
         </CardContent>
       </div>
-      <div className={classes.button}>
-        <Fab color="primary" aria-label="add">
-          <AddIcon onClick={handleAddPlace} />
+      <div className={classes.button} >
+        <Fab color="primary" aria-label="add" onClick={handleAddPlace} role="button" name="add">
+          <AddIcon/>
         </Fab>
       </div>
     </Card>
