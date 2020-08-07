@@ -42,7 +42,6 @@ function App({ categoryStates }) {
 
   const loadPlaces = () => {
     filteredCategories.map((category) => {
-      console.log(category);
       const loadPlacesPerCategory = async (destination, category) => {
         getPlaces(`${destination}/${category}`).then((allPlaces) => {
           const len = allPlaces.length;

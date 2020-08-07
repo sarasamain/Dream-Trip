@@ -18,7 +18,7 @@ function PlacesList({
   }, []);
 
   let uniquePlaces = new Set(Object.values(exploreplaces));
-
+  console.log(exploreplaces);
   return (
     <div className={classes.root}>
       <TopBar
@@ -27,8 +27,8 @@ function PlacesList({
         buttonName="Next"
       />
       <div style={{ padding: 30 }}>
-        <Grid container direction="row" spacing={10}>
-          <Grid item xs={6}>
+        <Grid container direction="row" spacing={10} >
+          <Grid item xs={6} role="recommended">
             <Typography component="h5" variant="h5" paragraph={true}>
               Our recommendations for you is Here:
             </Typography>
@@ -39,7 +39,7 @@ function PlacesList({
               addPlace={addPlace}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} role="explore">
             <Typography component="h5" variant="h5" paragraph={true}>
               You might also like..
             </Typography>
