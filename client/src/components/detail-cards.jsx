@@ -25,8 +25,8 @@ export default function DetailCard({
   return (
     <div className="detail-card">
       <Card className={classes.root}>
-        <IconButton aria-label="delete" className={classes.margin}>
-          <DeleteIcon fontSize="small" onClick={deletePlace} />
+        <IconButton aria-label="delete" className={classes.margin} onClick={deletePlace} role="button" name="delete">
+          <DeleteIcon fontSize="small" />
         </IconButton>
         <div className={classes.details}>
           <CardContent className={classes.content}>

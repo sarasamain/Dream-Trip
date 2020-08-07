@@ -5,8 +5,6 @@ import {
   fireEvent
 } from "@testing-library/react";
 import ExploreCard from "../explore-card.jsx";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 
 const exploreplace = {
   name: "place 0",
