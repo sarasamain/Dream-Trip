@@ -23,6 +23,18 @@ export default function ItineraryCard({
   assignDay,
   assignedDay,
 }) {
+
+  console.log({imgUrl},
+    {name},
+    {address},
+    {price},
+    {rating},
+    {removePlace},
+    {id},
+    {tripDuration},
+    {assignDay},
+    assignedDay,)
+    
   const classes = useStyles();
   const deletePlace = () => {
     removePlace(id);
