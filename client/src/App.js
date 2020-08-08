@@ -9,7 +9,7 @@ import Categories from './views/Categories';
 import MapItinerary from './views/MapItinerary';
 import Recommendation from './views/Recommendation';
 
-import { tripDuration } from './utils/homeFunctions';
+import { tripDuration, placesPerType } from './utils/homeFunctions';
 
 function App({ categoryStates }) {
   const [startDate, setStartDate] = useState(moment());
@@ -30,12 +30,6 @@ function App({ categoryStates }) {
       .map((categoryState) => categoryState.text);
     setCategories(filterCategory);
   }, [categoryStates]);
-
-  // RUSHABH
-  const placesPerType = () => {
-    const duration = tripDuration();
-    return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
-  };
   
   // AMINA
   const loadPlaces = () => {
@@ -43,7 +37,7 @@ function App({ categoryStates }) {
       const loadPlacesPerCategory = async (destination, category) => {
         getPlaces(`${destination}/${category}`).then((allPlaces) => {
           const len = allPlaces.length;
-          const placeNum = placesPerType(startDate, endDate);
+          const placeNum = placesPerType(startDate, endDate, filteredCategories);
 
           let extraPlaces = allPlaces.slice(Math.min(len, placeNum));
           const exploreEntites = extraPlaces.reduce((acc, place) => {

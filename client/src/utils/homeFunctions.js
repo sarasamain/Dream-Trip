@@ -7,11 +7,11 @@ const tripDuration = (startDate, endDate) => {
   return momentEnd.diff(momentStart, 'days') + 1;
 };
 
-// // RUSHABH
-// const placesPerType = (startDate, endDate, filteredCategories) => {
-//   const duration = tripDuration(startDate, endDate);
-//   return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
-// };
+// RUSHABH
+const placesPerType = (startDate, endDate, filteredCategories) => {
+  const duration = tripDuration(startDate, endDate);
+  return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
+};
 
 // // RUSHABH
 // const addPlace = (id, setPlaces, setExplorePlaces) => {
@@ -22,7 +22,7 @@ const tripDuration = (startDate, endDate) => {
 
 export {
   tripDuration,
-  // placesPerType,
+  placesPerType,
   // addPlace
 }
 
