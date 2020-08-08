@@ -8,11 +8,15 @@ import classes from '../styles/recommendation';
 
 
 function PlacesList({
-  places,
   addPlace,
-  exploreplaces,
   removePlace,
   loadPlaces,
+  setPlaceEntities, 
+  placeEntities, 
+  places,
+  setPlaces,  
+  setExplorePlaces, 
+  exploreplaces,
 }) {
   useEffect(() => {
     loadPlaces();
@@ -35,9 +39,14 @@ function PlacesList({
             </Typography>
             <PlaceList
               key="PlaceList"
-              places={places}
               removePlace={removePlace}
               addPlace={addPlace}
+              setPlaceEntities={setPlaceEntities}
+              placeEntities={placeEntities}
+              setPlaces={setPlaces}
+              places={places}
+              setExplorePlaces={setExplorePlaces}
+              exploreplaces={exploreplaces}
             />
           </Grid>
           <Grid item xs={6} role="explore">
@@ -63,6 +72,13 @@ function PlacesList({
                       rating={exploreplace.rating}
                       id={exploreplace.place_id}
                       addPlace={addPlace}
+                      removePlace={removePlace}
+                      setPlaceEntities={setPlaceEntities}
+                      placeEntities={placeEntities}
+                      setPlaces={setPlaces}
+                      places={places}
+                      setExplorePlaces={setExplorePlaces}
+                      exploreplaces={exploreplaces}
                     />
                   </Grid>
                 );

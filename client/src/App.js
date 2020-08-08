@@ -8,6 +8,7 @@ import { getPlaces } from './api/getPlaces';
 import Categories from './views/Categories';
 import MapItinerary from './views/MapItinerary';
 import Recommendation from './views/Recommendation';
+import { addPlace, removePlace, handleAssignDay } from './utils/mapFunctions';
 
 function App({ categoryStates }) {
   const [startDate, setStartDate] = useState(moment());
@@ -35,7 +36,7 @@ function App({ categoryStates }) {
     return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
   };
 
-  const tripDuration = (startDate, endDate) => {
+  const tripDuration = () => {
     const momentStart = moment(startDate);
     const momentEnd = moment(endDate);
     return momentEnd.diff(momentStart, 'days') + 1;
@@ -97,34 +98,6 @@ function App({ categoryStates }) {
     });
   };
 
-  // SARA
-  const helper = (place_id, trueOrFalse) => {
-    const newEntities = { ...placeEntities };
-    newEntities[place_id].inMyList = trueOrFalse;
-    setPlaceEntities(newEntities);
-  };
-
-  // RUSHABH
-  const addPlace = (id) => {
-    helper(id, true);
-    setPlaces([...places, id]);
-    setExplorePlaces(exploreplaces.filter((place_id) => place_id !== id));
-  };
-
-  // SARA
-  const removePlace = (place_id) => {
-    helper(place_id, false);
-    setPlaces(places.filter((id) => place_id !== id));
-    setExplorePlaces([...exploreplaces, place_id]);
-  };
-
-  // SARA
-  const handleAsssignDay = (day, id) => {
-    const newEntities = { ...placeEntities };
-    newEntities[id].day = day;
-    setPlaceEntities(newEntities);
-  };
-
   return (
     <Router>
       <Switch>
@@ -148,10 +121,14 @@ function App({ categoryStates }) {
           render={() => (
             <Recommendation
               loadPlaces={loadPlaces}
-              places={places.map((id) => placeEntities[id])}
-              exploreplaces={exploreplaces.map((id) => placeEntities[id])}
               addPlace={addPlace}
               removePlace={removePlace}
+              setPlaceEntities={setPlaceEntities}
+              placeEntities={placeEntities}
+              setPlaces={setPlaces}
+              places={places.map((id) => placeEntities[id])}
+              setExplorePlaces={setExplorePlaces}
+              exploreplaces={exploreplaces.map((id) => placeEntities[id])}
             />
           )}
         />
@@ -162,7 +139,9 @@ function App({ categoryStates }) {
               places={places.map((id) => placeEntities[id])}
               removePlace={removePlace}
               tripDuration={tripDuration}
-              handleAsssignDay={handleAsssignDay}
+              handleAssignDay={handleAssignDay}
+              setPlaceEntities={setPlaceEntities}
+              placeEntities={placeEntities}
             />
           )}
         />

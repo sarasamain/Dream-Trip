@@ -10,10 +10,3 @@ const tripDuration = () => {
   const momentEnd = moment(endDate);
   return momentEnd.diff(momentStart, 'days') + 1;
 };
-
-// RUSHABH
-const addPlace = (id) => {
-  helper(id, true);
-  setPlaces([...places, id]);
-  setExplorePlaces(exploreplaces.filter((place_id) => place_id !== id));
-};

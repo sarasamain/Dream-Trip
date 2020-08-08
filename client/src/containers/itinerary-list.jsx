@@ -7,6 +7,8 @@ export default function ItineraryList({
   removePlace,
   tripDuration,
   assignDay,
+  setPlaceEntities,
+  placeEntities
 }) {
   let count = 0;
 
@@ -29,6 +31,8 @@ export default function ItineraryList({
                 assignDay={assignDay}
                 imgUrl={place.photos[0].photo_reference}
                 assignedDay={place.day}
+                setPlaceEntities={setPlaceEntities}
+                placeEntities={placeEntities}
               />
             </Grid>
           );
