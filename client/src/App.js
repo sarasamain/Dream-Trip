@@ -14,6 +14,7 @@ import {
 import Categories from './views/Categories';
 import MapItinerary from './views/MapItinerary';
 import Recommendation from './views/Recommendation';
+import { addPlace, removePlace, handleAssignDay } from './utils/mapFunctions';
 
 import { tripDuration, placesPerType } from './utils/homeFunctions';
 
@@ -28,7 +29,7 @@ function App({ categoryStates }) {
 
   useEffect(() => {
     setPlaceEntities({});
-  }, []);
+  }, []);    
 
   useEffect(() => {
     const filterCategory = categoryStates
@@ -62,34 +63,6 @@ function App({ categoryStates }) {
     });
   };
 
-  // SARA
-  const helper = (place_id, trueOrFalse) => {
-    const newEntities = { ...placeEntities };
-    newEntities[place_id].inMyList = trueOrFalse;
-    setPlaceEntities(newEntities);
-  };
-
-  // RUSHABH
-  const addPlace = (id) => {
-    helper(id, true);
-    setPlaces([...places, id]);
-    setExplorePlaces(exploreplaces.filter((place_id) => place_id !== id));
-  };
-
-  // SARA
-  const removePlace = (place_id) => {
-    helper(place_id, false);
-    setPlaces(places.filter((id) => place_id !== id));
-    setExplorePlaces([...exploreplaces, place_id]);
-  };
-
-  // SARA
-  const handleAsssignDay = (day, id) => {
-    const newEntities = { ...placeEntities };
-    newEntities[id].day = day;
-    setPlaceEntities(newEntities);
-  };
-
   return (
     <Router>
       <Switch>
@@ -113,10 +86,14 @@ function App({ categoryStates }) {
           render={() => (
             <Recommendation
               loadPlaces={loadPlaces}
-              places={places.map((id) => placeEntities[id])}
-              exploreplaces={exploreplaces.map((id) => placeEntities[id])}
               addPlace={addPlace}
               removePlace={removePlace}
+              setPlaceEntities={setPlaceEntities}
+              placeEntities={placeEntities}
+              setPlaces={setPlaces}
+              places={places.map((id) => placeEntities[id])}
+              setExplorePlaces={setExplorePlaces}
+              exploreplaces={exploreplaces.map((id) => placeEntities[id])}
             />
           )}
         />
@@ -126,10 +103,12 @@ function App({ categoryStates }) {
             <MapItinerary
               places={places.map((id) => placeEntities[id])}
               removePlace={removePlace}
-              tripDuration={()=>tripDuration(startDate, endDate)}
-              startDate = {startDate}
-              endDate = {endDate}
-              handleAsssignDay={handleAsssignDay}
+              tripDuration={tripDuration}
+              handleAssignDay={handleAssignDay}
+              setPlaceEntities={setPlaceEntities}
+              placeEntities={placeEntities}
+              startDate={startDate}
+              endDate={endDate}
             />
           )}
         />

@@ -24,18 +24,9 @@ export default function ItineraryCard({
   endDate,
   assignDay,
   assignedDay,
+  setPlaceEntities,
+  placeEntities
 }) {
-
-  console.log({imgUrl},
-    {name},
-    {address},
-    {price},
-    {rating},
-    {removePlace},
-    {id},
-    {tripDuration},
-    {assignDay},
-    assignedDay,)
 
   const classes = useStyles();
   const deletePlace = () => {
@@ -51,8 +42,7 @@ export default function ItineraryCard({
 
   const handleChange = (event) => {
     const newDay = event.target.value;
-    console.log('id', id, 'day', newDay);
-    assignDay(newDay, id);
+    assignDay(newDay, id, setPlaceEntities, placeEntities);
   };
 
   return (

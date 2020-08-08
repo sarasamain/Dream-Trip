@@ -13,10 +13,16 @@ export default function ExploreCard({
   rating,
   id,
   addPlace,
+  setPlaceEntities, 
+  placeEntities, 
+  setPlaces, 
+  places, 
+  setExplorePlaces, 
+  exploreplaces
 }) {
   const classes = useStyles();
   const handleAddPlace = () => {
-    addPlace(id);
+    addPlace(id, setPlaceEntities, placeEntities, setPlaces, places, setExplorePlaces, exploreplaces);
   };
   return (
     <Card className={classes.root}>
