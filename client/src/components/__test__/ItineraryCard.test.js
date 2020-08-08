@@ -6,7 +6,7 @@ import {
   fireEvent,
   screen
 } from "@testing-library/react";
-import ItineraryCard from './components/itinerary-card';
+import ItineraryCard from '../itinerary-card';
 
 const data = {
   imgUrl:"CmRaAAAAzI4cd_98WZAOOxZOdlMpxlGm2IkPofDqVAY9ReynfY…vXhk9WRhVUxT-4TDewGhSj4TgCCcEejHC93AZ59Q818NYUgA",
