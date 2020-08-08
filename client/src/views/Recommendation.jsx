@@ -6,6 +6,7 @@ import PlaceList from '../containers/place-list';
 import TopBar from '../components/top-bar';
 import classes from '../styles/recommendation';
 
+
 function PlacesList({
   places,
   addPlace,
@@ -18,7 +19,7 @@ function PlacesList({
   }, []);
 
   let uniquePlaces = new Set(Object.values(exploreplaces));
-  console.log(exploreplaces);
+
   return (
     <div className={classes.root}>
       <TopBar
