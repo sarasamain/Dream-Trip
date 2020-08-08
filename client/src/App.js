@@ -4,7 +4,13 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/home';
 import moment from 'moment';
-import { getPlaces } from './api/getPlaces';
+import { getPlaces, loadPlacesPerCategory, } from './api/getPlaces';
+import {
+  getExplorePlaces,
+  getRecommendedPlaces,
+  defineRecommendedPlaces,
+  defineExplorePlaces
+} from './utils/loadPlaces'
 import Categories from './views/Categories';
 import MapItinerary from './views/MapItinerary';
 import Recommendation from './views/Recommendation';
@@ -30,51 +36,22 @@ function App({ categoryStates }) {
       .map((categoryState) => categoryState.text);
     setCategories(filterCategory);
   }, [categoryStates]);
-  
+
   // AMINA
   const loadPlaces = () => {
     filteredCategories.map((category) => {
-      const loadPlacesPerCategory = async (destination, category) => {
-        getPlaces(`${destination}/${category}`).then((allPlaces) => {
-          const len = allPlaces.length;
+      return loadPlacesPerCategory(destination, category)
+        .then((allPlaces) => {
           const placeNum = placesPerType(startDate, endDate, filteredCategories);
+          const exploreEntities = getExplorePlaces(allPlaces, placeNum);
+          setPlaceEntities(Object.assign(placeEntities, exploreEntities));
 
-          let extraPlaces = allPlaces.slice(Math.min(len, placeNum));
-          const exploreEntites = extraPlaces.reduce((acc, place) => {
-            return {
-              ...acc,
-              [place.place_id]: Object.assign(
-                place,
-                { inMyList: false },
-                { day: 0 }
-              ),
-            };
-          }, {});
-          setPlaceEntities(Object.assign(placeEntities, exploreEntites));
+          const newEntities = getRecommendedPlaces(allPlaces, placeNum)
+          setPlaceEntities(Object.assign(placeEntities, newEntities));
 
-          let recommendedPlaces = allPlaces.slice(0, Math.min(len, placeNum));
-          const newEntites = recommendedPlaces.reduce((acc, place) => {
-            return {
-              ...acc,
-              [place.place_id]: Object.assign(
-                place,
-                { inMyList: true },
-                { day: 0 }
-              ),
-            };
-          }, {});
+          const newPlacesOnList = defineRecommendedPlaces(placeEntities);
 
-          setPlaceEntities(Object.assign(placeEntities, newEntites));
-
-          const placeIds = Object.keys(placeEntities);
-
-          const newPlacesOnList = placeIds.filter((placeKey) => {
-            return placeEntities[placeKey].inMyList === true;
-          });
-
-          const newExplorePlaces = placeIds.filter((placeKey) => {
-            return placeEntities[placeKey].inMyList === false;
-          });
+          const newExplorePlaces = defineExplorePlaces(placeEntities);
 
           setPlaces((places) => [...places, ...newPlacesOnList]);
           setExplorePlaces((exploreplaces) => [
@@ -82,8 +59,6 @@ function App({ categoryStates }) {
             ...newExplorePlaces,
           ]);
         });
-      };
-      return loadPlacesPerCategory(destination, category);
     });
   };
 

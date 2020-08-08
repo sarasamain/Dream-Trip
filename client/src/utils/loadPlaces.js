@@ -1,54 +1,51 @@
-const loadPlaces = () => {
-  filteredCategories.map((category) => {
-    const loadPlacesPerCategory = async (destination, category) => {
-      getPlaces(`${destination}/${category}`).then((allPlaces) => {
-        const len = allPlaces.length;
-        const placeNum = placesPerType();
+const getExplorePlaces = (allPlaces, placeNum) => {
+  const len = allPlaces.length;
 
-        let extraPlaces = allPlaces.slice(Math.min(len, placeNum));
-        const exploreEntites = extraPlaces.reduce((acc, place) => {
-          return {
-            ...acc,
-            [place.place_id]: Object.assign(
-              place,
-              { inMyList: false },
-              { day: 0 }
-            ),
-          };
-        }, {});
-        setPlaceEntities(Object.assign(placeEntities, exploreEntites));
-
-        let recommendedPlaces = allPlaces.slice(0, Math.min(len, placeNum));
-        const newEntites = recommendedPlaces.reduce((acc, place) => {
-          return {
-            ...acc,
-            [place.place_id]: Object.assign(
-              place,
-              { inMyList: true },
-              { day: 0 }
-            ),
-          };
-        }, {});
-
-        setPlaceEntities(Object.assign(placeEntities, newEntites));
-
-        const placeIds = Object.keys(placeEntities);
-
-        const newPlacesOnList = placeIds.filter((placeKey) => {
-          return placeEntities[placeKey].inMyList === true;
-        });
-
-        const newExplorePlaces = placeIds.filter((placeKey) => {
-          return placeEntities[placeKey].inMyList === false;
-        });
-
-        setPlaces((places) => [...places, ...newPlacesOnList]);
-        setExplorePlaces((exploreplaces) => [
-          ...exploreplaces,
-          ...newExplorePlaces,
-        ]);
-      });
+  let extraPlaces = allPlaces.slice(Math.min(len, placeNum));
+  return extraPlaces.reduce((acc, place) => {
+    return {
+      ...acc,
+      [place.place_id]: Object.assign(
+        place,
+        { inMyList: false },
+        { day: 0 }
+      ),
     };
-    return loadPlacesPerCategory(destination, category);
-  });
+  }, {});
 };
+
+const getRecommendedPlaces = (allPlaces, placeNum) => {
+  const len = allPlaces.length;
+  let recommendedPlaces = allPlaces.slice(0, Math.min(len, placeNum));
+  return recommendedPlaces.reduce((acc, place) => {
+    return {
+      ...acc,
+      [place.place_id]: Object.assign(
+        place,
+        { inMyList: true },
+        { day: 0 }
+      ),
+    };
+  }, {});
+};
+
+const defineRecommendedPlaces = (placeEntities) => {
+  const placeIds = Object.keys(placeEntities);
+  return placeIds.filter((placeKey) => {
+    return placeEntities[placeKey].inMyList === true;
+  });
+}
+
+const defineExplorePlaces = (placeEntities) => {
+  const placeIds = Object.keys(placeEntities);
+  return placeIds.filter((placeKey) => {
+    return placeEntities[placeKey].inMyList === false;
+  });
+}
+
+module.exports = {
+  getExplorePlaces,
+  getRecommendedPlaces,
+  defineRecommendedPlaces,
+  defineExplorePlaces
+}
