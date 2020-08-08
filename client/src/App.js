@@ -17,6 +17,8 @@ import Recommendation from './views/Recommendation';
 
 import { tripDuration, placesPerType } from './utils/homeFunctions';
 
+const test = 0;
+
 function App({ categoryStates }) {
   const [startDate, setStartDate] = useState(moment());
   const [endDate, setEndDate] = useState(moment());
