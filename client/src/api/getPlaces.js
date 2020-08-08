@@ -3,6 +3,10 @@ function getPlaces(path) {
   return fetchRequest(path);
 }
 
+const loadPlacesPerCategory = async (destination, category) => {
+  return await getPlaces(`${destination}/${category}`)
+}
+
 const fetchRequest = async (path, option) => {
   const url = 'http://localhost:3079';
   return fetch(`${url}/${path}`, option)
@@ -13,4 +17,5 @@ const fetchRequest = async (path, option) => {
 
 module.exports = {
   getPlaces,
+  loadPlacesPerCategory
 };
