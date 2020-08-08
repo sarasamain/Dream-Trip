@@ -34,12 +34,12 @@ export default function ItineraryCard({
     {tripDuration},
     {assignDay},
     assignedDay,)
-    
+
   const classes = useStyles();
   const deletePlace = () => {
     removePlace(id);
   };
-
+  
   const duration = tripDuration();
   const days = [];
 
