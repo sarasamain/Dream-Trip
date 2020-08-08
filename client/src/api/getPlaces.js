@@ -1,4 +1,17 @@
-function getPlaces(path) {
+const len = allPlaces.length;
+const placeNum = placesPerType();
+
+let extraPlaces = allPlaces.slice(Math.min(len, placeNum));
+const exploreEntites = extraPlaces.reduce((acc, place) => {
+  return {
+    ...acc,
+    [place.place_id]: Object.assign(
+      place,
+      { inMyList: false },
+      { day: 0 }
+    ),
+  };
+}, {});function getPlaces(path) {
   console.log('fetching places');
   return fetchRequest(path);
 }

@@ -54,7 +54,7 @@ describe('ItineraryCard', () => {
       assignedDay=""
       onChange={onChange}
     />)
-    fireEvent.select(screen.getByText("Text"), {target: {value: "1"}});
+    fireEvent.select(screen.getByText("DAY"), {target: {value: "1"}});
 
     expect(onChange).toHaveBeenCalledTimes(1);
     // expect(onChange).toHaveBeenCalledWith("1", expect.anything());

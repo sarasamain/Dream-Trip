@@ -15,7 +15,7 @@ import { ExpansionPanelActions } from '@material-ui/core';
 
 const date = "2017-10-10";
 
-describe("date-input", () => {
+describe.skip("date-input", () => {
   it("Should display the date chosen", () => {
     render(<DateInput dateValue={date} handleDateChange={()=>{}} label="this is a label" />)
     expect(screen.getByDisplayValue(date)).toBeInTheDocument();

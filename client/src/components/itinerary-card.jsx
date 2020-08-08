@@ -83,7 +83,9 @@ export default function ItineraryCard({
                 value={assignedDay}
                 onChange={handleChange}
                 label="Day"
+                aria-label="SelectDay"
               >
+                Text
                 <option aria-label="None" value="" />
                 {days.map((day) => {
                   return <option value={day}>{day}</option>;

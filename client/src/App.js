@@ -34,7 +34,7 @@ function App({ categoryStates }) {
     return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
   };
 
-  const tripDuration = () => {
+  const tripDuration = (startDate, endDate) => {
     const momentStart = moment(startDate);
     const momentEnd = moment(endDate);
     return momentEnd.diff(momentStart, 'days') + 1;

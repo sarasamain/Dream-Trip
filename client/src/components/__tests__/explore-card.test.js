@@ -14,7 +14,7 @@ const exploreplace = {
   place_id: "0",
 };
 
-describe("ExploreCard", () => {
+describe.skip("ExploreCard", () => {
   it("displays the place information", () => {
     render(<ExploreCard key={exploreplace.place_id}
       name={exploreplace.name}
