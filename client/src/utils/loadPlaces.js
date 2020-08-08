@@ -1,3 +1,4 @@
+// RUSHABH TO TEST
 const getExplorePlaces = (allPlaces, placeNum) => {
   const len = allPlaces.length;
 
@@ -14,6 +15,7 @@ const getExplorePlaces = (allPlaces, placeNum) => {
   }, {});
 };
 
+// RUSHABH TO TEST
 const getRecommendedPlaces = (allPlaces, placeNum) => {
   const len = allPlaces.length;
   let recommendedPlaces = allPlaces.slice(0, Math.min(len, placeNum));
@@ -29,6 +31,7 @@ const getRecommendedPlaces = (allPlaces, placeNum) => {
   }, {});
 };
 
+// AMINA TO TEST
 const defineRecommendedPlaces = (placeEntities) => {
   const placeIds = Object.keys(placeEntities);
   return placeIds.filter((placeKey) => {
@@ -36,6 +39,7 @@ const defineRecommendedPlaces = (placeEntities) => {
   });
 }
 
+// SARA TO TEST
 const defineExplorePlaces = (placeEntities) => {
   const placeIds = Object.keys(placeEntities);
   return placeIds.filter((placeKey) => {

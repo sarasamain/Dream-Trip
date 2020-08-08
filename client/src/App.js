@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/home';
 import moment from 'moment';
-import { getPlaces, loadPlacesPerCategory, } from './api/getPlaces';
+import { 
+  getPlaces, 
+  loadPlacesPerCategory
+} from './api/getPlaces';
 import {
   getExplorePlaces,
   getRecommendedPlaces,
@@ -17,8 +20,6 @@ import Recommendation from './views/Recommendation';
 import { addPlace, removePlace, handleAssignDay } from './utils/mapFunctions';
 
 import { tripDuration, placesPerType } from './utils/homeFunctions';
-
-const test = 0;
 
 function App({ categoryStates }) {
   const [startDate, setStartDate] = useState(moment());
