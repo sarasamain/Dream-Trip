@@ -29,17 +29,20 @@ function App({ categoryStates }) {
     setCategories(filterCategory);
   }, [categoryStates]);
 
+  // RUSHABH
   const placesPerType = () => {
     const duration = tripDuration();
     return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
   };
 
+  // RUSHABH
   const tripDuration = () => {
     const momentStart = moment(startDate);
     const momentEnd = moment(endDate);
     return momentEnd.diff(momentStart, 'days') + 1;
   };
-
+  
+  // AMINA
   const loadPlaces = () => {
     filteredCategories.map((category) => {
       const loadPlacesPerCategory = async (destination, category) => {
@@ -95,24 +98,28 @@ function App({ categoryStates }) {
     });
   };
 
+  // SARA
   const helper = (place_id, trueOrFalse) => {
     const newEntities = { ...placeEntities };
     newEntities[place_id].inMyList = trueOrFalse;
     setPlaceEntities(newEntities);
   };
 
+  // RUSHABH
   const addPlace = (id) => {
     helper(id, true);
     setPlaces([...places, id]);
     setExplorePlaces(exploreplaces.filter((place_id) => place_id !== id));
   };
 
+  // SARA
   const removePlace = (place_id) => {
     helper(place_id, false);
     setPlaces(places.filter((id) => place_id !== id));
     setExplorePlaces([...exploreplaces, place_id]);
   };
 
+  // SARA
   const handleAsssignDay = (day, id) => {
     const newEntities = { ...placeEntities };
     newEntities[id].day = day;
