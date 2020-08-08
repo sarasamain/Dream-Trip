@@ -9,6 +9,8 @@ import Categories from './views/Categories';
 import MapItinerary from './views/MapItinerary';
 import Recommendation from './views/Recommendation';
 
+import { tripDuration } from './utils/homeFunctions';
+
 function App({ categoryStates }) {
   const [startDate, setStartDate] = useState(moment());
   const [endDate, setEndDate] = useState(moment());
@@ -34,13 +36,6 @@ function App({ categoryStates }) {
     const duration = tripDuration();
     return Math.ceil(((duration + 1) * 4) / filteredCategories.length);
   };
-
-  // RUSHABH
-  const tripDuration = () => {
-    const momentStart = moment(startDate);
-    const momentEnd = moment(endDate);
-    return momentEnd.diff(momentStart, 'days') + 1;
-  };
   
   // AMINA
   const loadPlaces = () => {
@@ -48,7 +43,7 @@ function App({ categoryStates }) {
       const loadPlacesPerCategory = async (destination, category) => {
         getPlaces(`${destination}/${category}`).then((allPlaces) => {
           const len = allPlaces.length;
-          const placeNum = placesPerType();
+          const placeNum = placesPerType(startDate, endDate);
 
           let extraPlaces = allPlaces.slice(Math.min(len, placeNum));
           const exploreEntites = extraPlaces.reduce((acc, place) => {
@@ -162,7 +157,9 @@ function App({ categoryStates }) {
             <MapItinerary
               places={places.map((id) => placeEntities[id])}
               removePlace={removePlace}
-              tripDuration={tripDuration}
+              tripDuration={()=>tripDuration(startDate, endDate)}
+              startDate = {startDate}
+              endDate = {endDate}
               handleAsssignDay={handleAsssignDay}
             />
           )}

@@ -4,7 +4,7 @@ import ItineraryList from '../containers/itinerary-list';
 import Grid from '@material-ui/core/Grid';
 import TopBar from '../components/top-bar';
 
-function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay }) {
+function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, startDate, endDate }) {
   let uniquePlaces = new Set(Object.values(places));
 
   return (
@@ -24,6 +24,8 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay }) {
               removePlace={removePlace}
               tripDuration={tripDuration}
               assignDay={handleAsssignDay}
+              startDate = {startDate}
+              endDate = {endDate}
             />
           </div>
         </Grid>

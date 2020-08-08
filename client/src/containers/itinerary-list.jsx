@@ -7,6 +7,8 @@ export default function ItineraryList({
   removePlace,
   tripDuration,
   assignDay,
+  startDate,
+  endDate
 }) {
   let count = 0;
 
@@ -26,6 +28,8 @@ export default function ItineraryList({
                 price={place.price_level}
                 rating={place.rating}
                 tripDuration={tripDuration}
+                startDate = {startDate}
+                endDate = {endDate}
                 assignDay={assignDay}
                 imgUrl={place.photos[0].photo_reference}
                 assignedDay={place.day}

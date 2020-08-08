@@ -20,6 +20,8 @@ export default function ItineraryCard({
   removePlace,
   id,
   tripDuration,
+  startDate,
+  endDate,
   assignDay,
   assignedDay,
 }) {
@@ -40,7 +42,7 @@ export default function ItineraryCard({
     removePlace(id);
   };
   
-  const duration = tripDuration();
+  const duration = tripDuration(startDate, endDate);
   const days = [];
 
   for (let i = 1; i <= duration; i++) {
