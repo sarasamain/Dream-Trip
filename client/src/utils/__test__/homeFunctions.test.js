@@ -1,0 +1,1 @@
+const getExplorePlaces = require('./../loadPlaces').getExplorePlaces;

@@ -1,7 +1,7 @@
 // RUSHABH TO TEST
 const getExplorePlaces = (allPlaces, placeNum) => {
   const len = allPlaces.length;
-
+  
   let extraPlaces = allPlaces.slice(Math.min(len, placeNum));
   return extraPlaces.reduce((acc, place) => {
     return {
