@@ -83,7 +83,11 @@ function App({ categoryStates }) {
             />
           )}
         />
-        <Route path="/Categories" component={Categories} />
+        <Route path="/Categories"
+          render={() => (
+            <Categories />
+          )}>
+        </Route>
         <Route
           path="/Recommendation"
           render={() => (
