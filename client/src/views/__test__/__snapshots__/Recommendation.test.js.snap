@@ -1,0 +1,615 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Recommendation renders correctly 1`] = `
+<div>
+  <div
+    className="makeStyles-root-15"
+  >
+    <header
+      className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorTransparent MuiPaper-elevation4"
+    >
+      <div
+        className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <button
+          aria-label="menu"
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-16 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          disabled={false}
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <a
+              href="/"
+              onClick={[Function]}
+              style={
+                Object {
+                  "textDecoration": "none",
+                }
+              }
+            >
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+                />
+              </svg>
+            </a>
+          </span>
+        </button>
+        <h6
+          className="MuiTypography-root makeStyles-title-17 MuiTypography-h6"
+        >
+          Recommendations
+        </h6>
+        <a
+          aria-disabled={false}
+          className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary"
+          href="/MapItinerary"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <span
+            className="MuiButton-label"
+          >
+            Next
+          </span>
+        </a>
+      </div>
+    </header>
+  </div>
+  <div
+    style={
+      Object {
+        "padding": 30,
+      }
+    }
+  >
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-10"
+    >
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+        role="recommended"
+      >
+        <h5
+          className="MuiTypography-root MuiTypography-h5 MuiTypography-paragraph"
+        >
+          Our recommendations for you is Here:
+        </h5>
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-direction-xs-column"
+        >
+          <div
+            className="MuiGrid-root MuiGrid-item"
+          >
+            <div
+              className="detail-card"
+            >
+              <div
+                className="MuiPaper-root MuiCard-root makeStyles-root-18 MuiPaper-elevation1 MuiPaper-rounded"
+              >
+                <button
+                  aria-label="delete"
+                  className="MuiButtonBase-root MuiIconButton-root makeStyles-margin-23"
+                  disabled={false}
+                  name="delete"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  type="button"
+                >
+                  <span
+                    className="MuiIconButton-label"
+                  >
+                    <svg
+                      aria-hidden={true}
+                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <div
+                  className="makeStyles-details-19"
+                >
+                  <div
+                    className="MuiCardContent-root makeStyles-content-21"
+                  >
+                    <h5
+                      className="MuiTypography-root MuiTypography-h5"
+                    >
+                      place 0
+                    </h5>
+                    <h6
+                      className="MuiTypography-root MuiTypography-subtitle1 MuiTypography-colorTextSecondary"
+                    />
+                    <h6
+                      className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
+                    >
+                      $: 
+                    </h6>
+                    <h6
+                      className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
+                    >
+                      <span
+                        aria-label="star"
+                        role="img"
+                      >
+                        ⭐️
+                      </span>
+                      : 
+                      1
+                    </h6>
+                  </div>
+                </div>
+                <div
+                  className="MuiCardMedia-root makeStyles-cover-22"
+                  style={
+                    Object {
+                      "backgroundImage": "url(\\"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=place0url&key=AIzaSyAfejVJkjY7XmhTGcBBQ7hNeJpG8mYbcGg\\")",
+                    }
+                  }
+                  title="place 0"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item"
+          >
+            <div
+              className="detail-card"
+            >
+              <div
+                className="MuiPaper-root MuiCard-root makeStyles-root-18 MuiPaper-elevation1 MuiPaper-rounded"
+              >
+                <button
+                  aria-label="delete"
+                  className="MuiButtonBase-root MuiIconButton-root makeStyles-margin-23"
+                  disabled={false}
+                  name="delete"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  type="button"
+                >
+                  <span
+                    className="MuiIconButton-label"
+                  >
+                    <svg
+                      aria-hidden={true}
+                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <div
+                  className="makeStyles-details-19"
+                >
+                  <div
+                    className="MuiCardContent-root makeStyles-content-21"
+                  >
+                    <h5
+                      className="MuiTypography-root MuiTypography-h5"
+                    >
+                      place 1
+                    </h5>
+                    <h6
+                      className="MuiTypography-root MuiTypography-subtitle1 MuiTypography-colorTextSecondary"
+                    />
+                    <h6
+                      className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
+                    >
+                      $: 
+                    </h6>
+                    <h6
+                      className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
+                    >
+                      <span
+                        aria-label="star"
+                        role="img"
+                      >
+                        ⭐️
+                      </span>
+                      : 
+                      1
+                    </h6>
+                  </div>
+                </div>
+                <div
+                  className="MuiCardMedia-root makeStyles-cover-22"
+                  style={
+                    Object {
+                      "backgroundImage": "url(\\"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=place1url&key=AIzaSyAfejVJkjY7XmhTGcBBQ7hNeJpG8mYbcGg\\")",
+                    }
+                  }
+                  title="place 1"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item"
+          >
+            <div
+              className="detail-card"
+            >
+              <div
+                className="MuiPaper-root MuiCard-root makeStyles-root-18 MuiPaper-elevation1 MuiPaper-rounded"
+              >
+                <button
+                  aria-label="delete"
+                  className="MuiButtonBase-root MuiIconButton-root makeStyles-margin-23"
+                  disabled={false}
+                  name="delete"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  type="button"
+                >
+                  <span
+                    className="MuiIconButton-label"
+                  >
+                    <svg
+                      aria-hidden={true}
+                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <div
+                  className="makeStyles-details-19"
+                >
+                  <div
+                    className="MuiCardContent-root makeStyles-content-21"
+                  >
+                    <h5
+                      className="MuiTypography-root MuiTypography-h5"
+                    >
+                      place 2
+                    </h5>
+                    <h6
+                      className="MuiTypography-root MuiTypography-subtitle1 MuiTypography-colorTextSecondary"
+                    />
+                    <h6
+                      className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
+                    >
+                      $: 
+                    </h6>
+                    <h6
+                      className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary"
+                    >
+                      <span
+                        aria-label="star"
+                        role="img"
+                      >
+                        ⭐️
+                      </span>
+                      : 
+                      1
+                    </h6>
+                  </div>
+                </div>
+                <div
+                  className="MuiCardMedia-root makeStyles-cover-22"
+                  style={
+                    Object {
+                      "backgroundImage": "url(\\"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=place2url&key=AIzaSyAfejVJkjY7XmhTGcBBQ7hNeJpG8mYbcGg\\")",
+                    }
+                  }
+                  title="place 2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+        role="explore"
+      >
+        <h5
+          className="MuiTypography-root MuiTypography-h5 MuiTypography-paragraph"
+        >
+          You might also like..
+        </h5>
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-justify-xs-center"
+          display="flex"
+        >
+          <div
+            className="MuiGrid-root MuiGrid-item"
+          >
+            <div
+              className="MuiPaper-root MuiCard-root makeStyles-root-25 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="makeStyles-details-28"
+              >
+                <div
+                  className="MuiCardContent-root"
+                >
+                  <h6
+                    className="MuiTypography-root MuiTypography-h6"
+                  >
+                    expplace 0
+                  </h6>
+                  <p
+                    className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+                  />
+                  <p
+                    className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+                  >
+                    $: 
+                     ⭐️: 
+                    0
+                  </p>
+                </div>
+              </div>
+              <div
+                className="makeStyles-button-27"
+              >
+                <button
+                  aria-label="add"
+                  className="MuiButtonBase-root MuiFab-root MuiFab-primary"
+                  disabled={false}
+                  name="add"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  type="button"
+                >
+                  <span
+                    className="MuiFab-label"
+                  >
+                    <svg
+                      aria-hidden={true}
+                      className="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item"
+          >
+            <div
+              className="MuiPaper-root MuiCard-root makeStyles-root-25 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="makeStyles-details-28"
+              >
+                <div
+                  className="MuiCardContent-root"
+                >
+                  <h6
+                    className="MuiTypography-root MuiTypography-h6"
+                  >
+                    expplace 1
+                  </h6>
+                  <p
+                    className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+                  />
+                  <p
+                    className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+                  >
+                    $: 
+                     ⭐️: 
+                    0
+                  </p>
+                </div>
+              </div>
+              <div
+                className="makeStyles-button-27"
+              >
+                <button
+                  aria-label="add"
+                  className="MuiButtonBase-root MuiFab-root MuiFab-primary"
+                  disabled={false}
+                  name="add"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  type="button"
+                >
+                  <span
+                    className="MuiFab-label"
+                  >
+                    <svg
+                      aria-hidden={true}
+                      className="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item"
+          >
+            <div
+              className="MuiPaper-root MuiCard-root makeStyles-root-25 MuiPaper-elevation1 MuiPaper-rounded"
+            >
+              <div
+                className="makeStyles-details-28"
+              >
+                <div
+                  className="MuiCardContent-root"
+                >
+                  <h6
+                    className="MuiTypography-root MuiTypography-h6"
+                  >
+                    expplace 2
+                  </h6>
+                  <p
+                    className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+                  />
+                  <p
+                    className="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+                  >
+                    $: 
+                     ⭐️: 
+                    0
+                  </p>
+                </div>
+              </div>
+              <div
+                className="makeStyles-button-27"
+              >
+                <button
+                  aria-label="add"
+                  className="MuiButtonBase-root MuiFab-root MuiFab-primary"
+                  disabled={false}
+                  name="add"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onDragLeave={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  role="button"
+                  tabIndex={0}
+                  type="button"
+                >
+                  <span
+                    className="MuiFab-label"
+                  >
+                    <svg
+                      aria-hidden={true}
+                      className="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
