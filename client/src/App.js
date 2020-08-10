@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/home';
 import moment from 'moment';
-import { 
-  getPlaces, 
+import {
+  getPlaces,
   loadPlacesPerCategory
 } from './api/getPlaces';
 import {
@@ -32,7 +32,7 @@ function App({ categoryStates }) {
 
   useEffect(() => {
     setPlaceEntities({});
-  }, []);    
+  }, []);
 
   useEffect(() => {
     const filterCategory = categoryStates
