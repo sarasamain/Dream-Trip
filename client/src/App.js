@@ -46,10 +46,14 @@ function App({ categoryStates }) {
       return loadPlacesPerCategory(destination, category)
         .then((allPlaces) => {
           const placeNum = placesPerType(startDate, endDate, filteredCategories);
+          
           const exploreEntities = getExplorePlaces(allPlaces, placeNum);
           setPlaceEntities(Object.assign(placeEntities, exploreEntities));
 
+          console.log('input into getRecommendedPlaces', allPlaces, placeNum);
           const newEntities = getRecommendedPlaces(allPlaces, placeNum)
+          console.log('return from getRecommendedPlaces', newEntities);
+
           setPlaceEntities(Object.assign(placeEntities, newEntities));
 
           const newPlacesOnList = defineRecommendedPlaces(placeEntities);
