@@ -15,6 +15,7 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
         <Grid item xs={6}>
           <div style={{ position: 'fixed' }}>
             <Map uniquePlaces={[...uniquePlaces]} />
+            {console.log(uniquePlaces)}
           </div>
         </Grid>
         <Grid item xs={6}>

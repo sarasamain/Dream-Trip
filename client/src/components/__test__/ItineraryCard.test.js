@@ -39,26 +39,26 @@ describe('ItineraryCard', () => {
     expect(screen.getByDisplayValue("1")).toBeInTheDocument();
     // expect(assignedDay).toBeTruthy();+
   });
-  it('Calls back when value changes', () => {
-    const onChange = jest.fn();
-    render(<ItineraryCard 
-      imgUrl={data.imgUrl}
-      name=  {data.name}
-      address= {data.address}
-      price= {data.price}
-      rating={data.rating}
-      removePlace={data.removePlace}
-      id={data.id}
-      tripDuration={data.tripDuration}
-      assignDay={data.assignDay}
-      assignedDay=""
-      onChange={onChange}
-    />)
-    fireEvent.select(screen.getByText("Text"), {target: {value: "1"}});
+  // it('Calls back when value changes', () => {
+  //   const onChange = jest.fn();
+  //   render(<ItineraryCard 
+  //     imgUrl={data.imgUrl}
+  //     name=  {data.name}
+  //     address= {data.address}
+  //     price= {data.price}
+  //     rating={data.rating}
+  //     removePlace={data.removePlace}
+  //     id={data.id}
+  //     tripDuration={data.tripDuration}
+  //     assignDay={data.assignDay}
+  //     assignedDay=""
+  //     onChange={onChange}
+  //   />)
+  //   fireEvent.select(screen.getByText("Text"), {target: {value: "1"}});
 
-    expect(onChange).toHaveBeenCalledTimes(1);
+    // expect(onChange).toHaveBeenCalledTimes(1);
     // expect(onChange).toHaveBeenCalledWith("1", expect.anything());
-  });
+  // });
 })
 
 // it("calls back when value changes", () => {
