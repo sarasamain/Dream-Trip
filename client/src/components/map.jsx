@@ -4,7 +4,7 @@ import MapMarker from './map-marker';
 
 function SimpleMap({ uniquePlaces }) {
   let count = 0;
-  console.log('map', uniquePlaces);
+  
   const defaultProps = {
     center: {
       lat: uniquePlaces[0].geometry.location.lat,

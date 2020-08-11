@@ -4,6 +4,9 @@ import ItineraryList from '../containers/itinerary-list';
 import Grid from '@material-ui/core/Grid';
 import TopBar from '../components/top-bar';
 import Modal from 'react-modal';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { sendEmail } from './../api/sendEmail';
 
 // REMOVE
 import moment from 'moment';
@@ -18,14 +21,29 @@ function MapItinerary({ removePlace, tripDuration, handleAsssignDay}) {
 
   let uniquePlaces = new Set(Object.values(places));
 
+  const userEmail = "test@test.com"
   const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const [ emailRecipients, setEmailRecipients] = useState('')
 
   const handleEmailMe = function () {
     setIsModalOpen(true);
+    console.log(uniquePlaces);
   }
 
   const handleCloseModal = function () {
     setIsModalOpen(false);
+  }
+
+  const onEmailChange = function (event) {
+    event.persist();
+    setEmailRecipients(event.target.value)
+  }
+
+  const handleSendEmail = function (event){
+    event.preventDefault();
+    sendEmail(uniquePlaces, emailRecipients)
+    console.log("email to be sent")
+    console.log(emailRecipients);
   }
 
   return (
@@ -54,8 +72,19 @@ function MapItinerary({ removePlace, tripDuration, handleAsssignDay}) {
         isOpen={isModalOpen}
         onRequestClose={handleCloseModal}
       >
-        This is a test
-        <button onClick={handleCloseModal}>Close modal</button>
+        <form onSubmit={handleSendEmail}>
+          Emails:
+          <TextField
+            id="email"
+            label="Email recepients"
+            defaultValue="Default Value"
+            variant="outlined"
+            value={emailRecipients}
+            onChange={onEmailChange}
+          />
+          <Button type="submit" onClick={handleSendEmail}>Send</Button>
+        </form>
+        <button type="button" onClick={handleCloseModal}>Close modal</button>
       </Modal>
     </div>
   );
