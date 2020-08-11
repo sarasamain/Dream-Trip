@@ -3,6 +3,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/home';
+import Login from './views/login';
 import moment from 'moment';
 import { 
   getPlaces, 
@@ -97,6 +98,13 @@ function App({ categoryStates }) {
   return (
     <Router>
       <Switch>
+        <Route
+          exact
+          path="/login"
+          render={() => (
+            <Login/>
+          )}
+        />
         <Route
           exact
           path="/"
