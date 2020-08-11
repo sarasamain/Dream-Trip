@@ -26,17 +26,6 @@ export default function ItineraryCard({
   assignedDay,
 }) {
 
-  console.log({imgUrl},
-    {name},
-    {address},
-    {price},
-    {rating},
-    {removePlace},
-    {id},
-    {tripDuration},
-    {assignDay},
-    assignedDay,)
-
   const classes = useStyles();
   const deletePlace = () => {
     removePlace(id);
@@ -51,7 +40,6 @@ export default function ItineraryCard({
 
   const handleChange = (event) => {
     const newDay = event.target.value;
-    console.log('id', id, 'day', newDay);
     assignDay(newDay, id);
   };
 

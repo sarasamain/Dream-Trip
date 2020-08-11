@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/home';
 import moment from 'moment';
-import { 
-  getPlaces, 
+import {
   loadPlacesPerCategory
 } from './api/getPlaces';
 import {
@@ -46,7 +45,7 @@ function App({ categoryStates }) {
       return loadPlacesPerCategory(destination, category)
         .then((allPlaces) => {
           const placeNum = placesPerType(startDate, endDate, filteredCategories);
-          
+
           const exploreEntities = getExplorePlaces(allPlaces, placeNum);
           setPlaceEntities(Object.assign(placeEntities, exploreEntities));
 
@@ -129,10 +128,11 @@ function App({ categoryStates }) {
           render={() => (
             <MapItinerary
               places={places.map((id) => placeEntities[id])}
+              setPlaces={setPlaces}
               removePlace={removePlace}
-              tripDuration={()=>tripDuration(startDate, endDate)}
-              startDate = {startDate}
-              endDate = {endDate}
+              tripDuration={() => tripDuration(startDate, endDate)}
+              startDate={startDate}
+              endDate={endDate}
               handleAsssignDay={handleAsssignDay}
             />
           )}
