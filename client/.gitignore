@@ -24,3 +24,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#OAuth
+/client_secret_694952899689-pigf65c9dcaqqtil0ecdso0ovjfmv6t3.apps.googleusercontent.com.json
+/client_secret.json

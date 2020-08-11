@@ -4,9 +4,21 @@ const port = 3079;
 const router = require('./router');
 const cors = require('cors');
 
+const corsConfig = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+};
+
 app.use(cors());
 app.use(express.json());
 app.use(router);
-app.listen(port, () => {
-  console.log(`server is listening at http://localhost:${port} 🚀🚀🚀`); // eslint-disable-line no-console
+app.get('*', (req, res) => {
+  res.status(404).send('Sorry, not found 😞');
+});
+app.listen(port, (err) => {
+  if (err) {
+    console.log(`😞 Sorry, something went wrong! ${err}`); // eslint-disable-line no-console
+  } else {
+  console.log(`Server is listening at http://localhost:${port} 🚀🚀🚀`); // eslint-disable-line no-console
+  }
 });

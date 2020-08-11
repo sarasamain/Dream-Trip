@@ -107,7 +107,7 @@ function App({ categoryStates }) {
         />
         <Route
           exact
-          path="/"
+          path="/home"
           render={() => (
             <Home
               setStartDate={setStartDate}
