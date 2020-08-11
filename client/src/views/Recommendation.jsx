@@ -71,6 +71,9 @@ function PlacesList({
           </Grid>
         </Grid>
       </div>
+      <div class="email-modal">
+        
+      </div>
     </div>
   );
 }
