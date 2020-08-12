@@ -1,0 +1,14 @@
+ `<h1>Here's your Dream Trip Itinerary</h1>
+  {{#each this}}
+  <div style="
+    border-style: solid;
+    border-color: coral;
+    border-width: thin;
+    text-align:center;"
+  >
+    <h3 style="color:blue;text-align:center;">{{name}}</h3>
+    <p>Address: {{formatted_address}}</p>
+    <p>rating: {{rating}}</p>
+    <p>day: {{day}}</p>
+  </div>
+  {{/each}}`
