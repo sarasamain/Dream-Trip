@@ -1,6 +1,4 @@
 const nodemailer = require('nodemailer');
-const fs = require('fs');
-const path = require('path');
 const Handlebars = require('handlebars');
 
 exports.sendEmail = (req, res) => {
@@ -20,7 +18,7 @@ exports.sendEmail = (req, res) => {
     background-color: #d9ffe3"
   >
     <h2 style="
-      color:blue;
+      color:#1f9aff;
       text-align:center;
       text-transform:uppercase;
       letter-spacing:2px;"
@@ -30,18 +28,21 @@ exports.sendEmail = (req, res) => {
     <p style="
       color:#575757;
       text-align:left;
+      padding-left: 20px"
     >
       <strong>Address:</strong> {{formatted_address}}
     </p>
     <p style="
       color:#575757;
       text-align:left;
+      padding-left: 20px"
     >
       <strong>Rating:</strong> {{rating}}
     </p>
     <p style="
       color:#575757;
       text-align:left;
+      padding-left: 20px"
     >
       <strong>Day:</strong> {{day}}
     </p>
