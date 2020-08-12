@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { sendEmail } from './../api/sendEmail';
+import Animation from './../components/animation';
 
 // REMOVE
 import moment from 'moment';
@@ -41,9 +42,9 @@ function MapItinerary({ removePlace, tripDuration, handleAsssignDay}) {
 
   const handleSendEmail = function (event){
     event.preventDefault();
-    sendEmail(uniquePlaces, emailRecipients)
-    console.log("email to be sent")
-    console.log(emailRecipients);
+    sendEmail(uniquePlaces, emailRecipients);
+    setIsModalOpen(false);
+    setEmailRecipients('');
   }
 
   return (
@@ -85,6 +86,7 @@ function MapItinerary({ removePlace, tripDuration, handleAsssignDay}) {
           <Button type="submit" onClick={handleSendEmail}>Send</Button>
         </form>
         <button type="button" onClick={handleCloseModal}>Close modal</button>
+        <Animation />
       </Modal>
     </div>
   );

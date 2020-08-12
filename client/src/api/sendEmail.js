@@ -1,7 +1,8 @@
 const sendEmail = async (data, email) => {
   const url = 'http://localhost:3079/sendemail';
   const payload = {
-    data, email
+    data: [...data],
+    email: email
   }
   fetch(url,{
     method: 'POST',
