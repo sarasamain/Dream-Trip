@@ -58,28 +58,11 @@ export default function ItineraryCard({
               {address}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              $: {price}
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
               <span role="img" aria-label="star">
                 ⭐️
               </span>
               : {rating}
             </Typography>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel htmlFor="outlined-age-native-simple">DAY</InputLabel>
-              <Select
-                native
-                value={assignedDay}
-                onChange={handleChange}
-                label="Day"
-              >
-                <option aria-label="None" value="" />
-                {days.map((day) => {
-                  return <option value={day}>{day}</option>;
-                })}
-              </Select>
-            </FormControl>
           </CardContent>
         </div>
         <CardMedia

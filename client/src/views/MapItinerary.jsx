@@ -72,6 +72,9 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
     width: 250
   });
 
+  
+  console.log(JSON.stringify(days));
+
   return (
     <div>
       <TopBar heading="Map" buttonPath="/MapItinerary" buttonName="Email Me" />
