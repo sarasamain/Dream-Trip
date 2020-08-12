@@ -26,7 +26,6 @@ export default function ItineraryCard({
   assignedDay,
 }) {
 
-
   const classes = useStyles();
   const deletePlace = () => {
     removePlace(id);
@@ -41,12 +40,11 @@ export default function ItineraryCard({
 
   const handleChange = (event) => {
     const newDay = event.target.value;
-    console.log('id', id, 'day', newDay);
     assignDay(newDay, id);
   };
 
   return (
-    <div className="detail-card">
+    <div className="itenerary-card">
       <Card className={classes.root}>
         <IconButton aria-label="delete" className={classes.margin}>
           <DeleteIcon fontSize="small" onClick={deletePlace} />
@@ -60,28 +58,11 @@ export default function ItineraryCard({
               {address}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              $: {price}
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
               <span role="img" aria-label="star">
                 ⭐️
               </span>
               : {rating}
             </Typography>
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel htmlFor="outlined-age-native-simple">DAY</InputLabel>
-              <Select
-                native
-                value={assignedDay}
-                onChange={handleChange}
-                label="Day"
-              >
-                <option aria-label="None" value="" />
-                {days.map((day) => {
-                  return <option value={day}>{day}</option>;
-                })}
-              </Select>
-            </FormControl>
           </CardContent>
         </div>
         <CardMedia

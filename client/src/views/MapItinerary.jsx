@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Map from '../components/map';
 import ItineraryList from '../containers/itinerary-list';
 import Grid from '@material-ui/core/Grid';
@@ -11,19 +11,75 @@ import Animation from './../components/animation';
 import modalStyle from './../styles/modal.css';
 import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import '../styles/mapItinerary.css';
 
-// REMOVE
-import moment from 'moment';
-const startDate = moment().format();
-const endDate = moment().format();
-const mocks = require('./../utils/__test__/mocks');
-const places = mocks.mocks.places;
-//
+function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, startDate, endDate }) {
 
-// function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, startDate, endDate }) {
-function MapItinerary({ removePlace, tripDuration, handleAsssignDay}) { 
+  const uniquePlacesArr = Object.values(places);
+  const initialDayState = {};
+  const duration = tripDuration(startDate, endDate);
+  for (let i = 1; i <= duration; i++) {
+    initialDayState[i] = uniquePlacesArr.filter(place => place.day === i)
+  }
 
-  let uniquePlaces = new Set(Object.values(places));
+  const [days, setDays] = useState(initialDayState);
+
+  const reorder = (list, startIndex, endIndex, draggableId) => {
+    const selectedElement = list.find(el => el.place_id === draggableId)
+    const result = Array.from(list);
+    result.splice(startIndex, 1);
+    result.splice(endIndex, 0, selectedElement);
+    return result;
+  };
+
+  /**
+ * Moves an item from one list to another list.
+ */
+  const move = (source, destination, droppableSource, droppableDestination, draggableId) => {
+    const sourceClone = Array.from(source);
+    const destClone = Array.from(destination);
+    const selectedElement = sourceClone.find(el => el.place_id === draggableId)
+    const removed = sourceClone.splice(droppableSource.index, 1);
+
+    destClone.splice(droppableDestination.index, 0, selectedElement);
+
+    const result = {};
+    result[droppableSource.droppableId] = sourceClone;
+    result[droppableDestination.droppableId] = destClone;
+
+    return result;
+  };
+
+  const onDragEnd = (result) => {
+    const { source, destination, draggableId } = result;
+
+    // dropped outside the list
+    if (!destination) {
+      return;
+    }
+    let sInd = +source.droppableId;
+    sInd += 1;
+    let dInd = +destination.droppableId;
+    dInd += 1;
+
+    if (sInd === dInd) {
+      const reorderedItems = reorder(days[sInd], source.index, destination.index, draggableId);
+
+      setDays((previousDays) => ({ ...previousDays, [sInd]: reorderedItems }))
+    } else {
+      const result = move(days[sInd], days[dInd], source, destination, draggableId);
+
+      setDays((previousDays) => ({ ...previousDays, [sInd--]: result[sInd], [dInd--]: result[dInd] }));
+    }
+  }
+  const grid = 8;
+
+  const getListStyle = isDraggingOver => ({
+    background: "white",
+    padding: grid,
+    width: '80vh'
+  });
 
   const userEmail = "test@test.com"
   const [ isModalOpen, setIsModalOpen ] = useState(false);
@@ -63,21 +119,38 @@ function MapItinerary({ removePlace, tripDuration, handleAsssignDay}) {
       <TopBar heading="Map" action={handleEmailMe} buttonName="Email Me" />
       <Grid container direction="row">
         <Grid item xs={6}>
-          <div style={{ position: 'fixed' }}>
-            <Map uniquePlaces={[...uniquePlaces]} />
-          </div>
+         
+            <Map days={days} />
+          
         </Grid>
         <Grid item xs={6}>
-          <div style={{ padding: 15, overflow: 'scroll' }}>
-            <ItineraryList
-              uniquePlaces={[...uniquePlaces]}
-              removePlace={removePlace}
-              tripDuration={tripDuration}
-              assignDay={handleAsssignDay}
-              startDate = {startDate}
-              endDate = {endDate}
-            />
-          </div>
+          <DragDropContext onDragEnd={onDragEnd}>
+            {Object.keys(days).map((el, ind) => (
+              <div className="day-div">
+                <h2 className="day-div-title">Day {el}</h2>
+                <Droppable key={ind} droppableId={`${ind}`}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      style={getListStyle(snapshot.isDraggingOver)}
+                      {...provided.droppableProps}
+                    >
+                      <ItineraryList
+                        uniquePlaces={days[el]}
+                        removePlace={removePlace}
+                        tripDuration={tripDuration}
+                        assignDay={handleAsssignDay}
+                        startDate={startDate}
+                        endDate={endDate}
+                        day={el}
+                      />
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </div>
+            ))}
+          </DragDropContext>
         </Grid>
       </Grid>
       <Modal
