@@ -17,7 +17,7 @@ function SimpleMap({ days }) {
   const K_MARGIN_LEFT = 30;
 
   return (
-    <div style={{ height: '650px', width: '600px' }}>
+    <div style={{ height: '89vh', width: '60vh', margin: '20px', boxSizing: 'border-box', position: 'fixed' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
         defaultCenter={defaultProps.center}

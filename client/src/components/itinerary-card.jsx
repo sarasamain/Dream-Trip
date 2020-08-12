@@ -44,7 +44,7 @@ export default function ItineraryCard({
   };
 
   return (
-    <div className="detail-card">
+    <div className="itenerary-card">
       <Card className={classes.root}>
         <IconButton aria-label="delete" className={classes.margin}>
           <DeleteIcon fontSize="small" onClick={deletePlace} />

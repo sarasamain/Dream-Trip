@@ -25,7 +25,7 @@ export default function ItineraryList({
     margin: `0 0 ${grid}px 0`,
 
     // change background colour if dragging
-    background: isDragging ? "lightgreen" : "grey",
+    background: isDragging ? "white" : "white",
 
     // styles we need to apply on draggables
     ...draggableStyle

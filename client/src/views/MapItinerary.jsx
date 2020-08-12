@@ -4,6 +4,7 @@ import ItineraryList from '../containers/itinerary-list';
 import Grid from '@material-ui/core/Grid';
 import TopBar from '../components/top-bar';
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import '../styles/mapItinerary.css';
 
 function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, startDate, endDate }) {
 
@@ -67,28 +68,25 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
   const grid = 8;
 
   const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "lightblue" : "lightgrey",
+    background: "white",
     padding: grid,
-    width: 250
+    width: '80vh'
   });
-
-  
-  console.log(JSON.stringify(days));
 
   return (
     <div>
       <TopBar heading="Map" buttonPath="/MapItinerary" buttonName="Email Me" />
       <Grid container direction="row">
         <Grid item xs={6}>
-          <div style={{ position: 'fixed' }}>
+         
             <Map days={days} />
-          </div>
+          
         </Grid>
         <Grid item xs={6}>
           <DragDropContext onDragEnd={onDragEnd}>
             {Object.keys(days).map((el, ind) => (
-              <div>
-                <h2>Day {el}</h2>
+              <div className="day-div">
+                <h2 className="day-div-title">Day {el}</h2>
                 <Droppable key={ind} droppableId={`${ind}`}>
                   {(provided, snapshot) => (
                     <div
