@@ -55,6 +55,7 @@ exports.getPlaces = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
+  console.log('Create controller, res:', res)
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
   if (user)
@@ -66,6 +67,7 @@ exports.create = async (req, res) => {
     ...req.body,
     password: hash,
   });
+  console.log('newUser', newUser);
   try {
     const { _id } = await newUser.save();
     const accessToken = jwt.sign({ _id }, SECRET_KEY);
@@ -101,8 +103,5 @@ exports.home= async (req, res) => {
 };
 
 exports.logout = (req, res) => {
-  // REMOVE-START
-  // delete the token client side upon logout.
-  // you would invalidate the token here.
-  // REMOVE-END
+  
 };

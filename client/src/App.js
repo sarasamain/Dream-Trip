@@ -3,10 +3,13 @@ import './App.css';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/home';
-import Login from './views/login';
+import Login from './components/login';
+import Register from './components/register';
+import Logout from './components/logout';
+import Auth from './views/auth';
+import auth from './utils/auth';
 import moment from 'moment';
 import { 
-  getPlaces, 
   loadPlacesPerCategory
 } from './api/getPlaces';
 import {
@@ -29,6 +32,9 @@ function App({ categoryStates }) {
   const [exploreplaces, setExplorePlaces] = useState([]);
   const [placeEntities, setPlaceEntities] = useState({});
   const [filteredCategories, setCategories] = useState([]);
+  const initialState = auth.isAuthenticated();
+  // eslint-disable-next-line
+  const [isAuthenticated, setIsAuthenticated] = useState(initialState);
 
   useEffect(() => {
     setPlaceEntities({});
@@ -97,12 +103,24 @@ function App({ categoryStates }) {
 
   return (
     <Router>
+      <Auth isAuthenticated={isAuthenticated}/> 
       <Switch>
-        <Route
-          exact
-          path="/login"
-          render={() => (
-            <Login/>
+        <Route 
+          path='/login'
+          render={(props) => (
+            <Login {...props} setIsAuthenticated={setIsAuthenticated} />
+          )}
+        />
+        <Route 
+          path='/register'
+          render={(props) => (
+            <Register {...props} setIsAuthenticated={setIsAuthenticated} />
+          )}
+        />
+        <Route 
+          path='/logout'
+          render={(props) => (
+            <Logout {...props} setIsAuthenticated={setIsAuthenticated} />
           )}
         />
         <Route
@@ -110,6 +128,7 @@ function App({ categoryStates }) {
           path="/home"
           render={() => (
             <Home
+              setIsAuthenticated={setIsAuthenticated}
               setStartDate={setStartDate}
               setEndDate={setEndDate}
               setDestination={setDestination}
@@ -124,6 +143,7 @@ function App({ categoryStates }) {
           path="/Recommendation"
           render={() => (
             <Recommendation
+              setIsAuthenticated={setIsAuthenticated}
               loadPlaces={loadPlaces}
               places={places.map((id) => placeEntities[id])}
               exploreplaces={exploreplaces.map((id) => placeEntities[id])}
@@ -136,6 +156,7 @@ function App({ categoryStates }) {
           path="/MapItinerary"
           render={() => (
             <MapItinerary
+              setIsAuthenticated={setIsAuthenticated}
               places={places.map((id) => placeEntities[id])}
               removePlace={removePlace}
               tripDuration={()=>tripDuration(startDate, endDate)}

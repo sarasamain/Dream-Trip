@@ -9,12 +9,12 @@ const corsConfig = {
   credentials: true,
 };
 
-app.use(cors());
+app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router);
-app.get('*', (req, res) => {
-  res.status(404).send('Sorry, not found 😞');
-});
+// app.get('*', (req, res) => {
+//   res.status(404).send('Sorry, not found 😞');
+// });
 app.listen(port, (err) => {
   if (err) {
     console.log(`😞 Sorry, something went wrong! ${err}`); // eslint-disable-line no-console
