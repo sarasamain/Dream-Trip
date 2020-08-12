@@ -103,12 +103,12 @@ function App({ categoryStates }) {
 
   return (
     <Router>
-      <Auth isAuthenticated={isAuthenticated}/> 
+    {/* <Auth isAuthenticated={isAuthenticated}/>  */}
       <Switch>
         <Route 
           path='/login'
-          render={(props) => (
-            <Login {...props} setIsAuthenticated={setIsAuthenticated} />
+          render={() => (
+            <Login setIsAuthenticated={setIsAuthenticated} />
           )}
         />
         <Route 
@@ -164,6 +164,12 @@ function App({ categoryStates }) {
               endDate = {endDate}
               handleAsssignDay={handleAsssignDay}
             />
+          )}
+        />
+        <Route 
+          path='/'
+          render={() => (
+            <Auth isAuthenticated={isAuthenticated} />
           )}
         />
       </Switch>

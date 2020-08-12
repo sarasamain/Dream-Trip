@@ -2,6 +2,7 @@ import Button from '@material-ui/core/Button';
 import React, { useState } from 'react';
 import auth from '../utils/auth';
 import apiService from '../ApiService';
+import '../styles/auth.css';
 
 const initialState = {
   email: '',
@@ -33,7 +34,9 @@ const Login = (props) => {
       const { accessToken } = res;
       localStorage.setItem('accessToken', accessToken);
       props.setIsAuthenticated(true);
-      auth.login(() => props.history.push('/home'));
+      // auth.login(() => props.history.push('/home'));
+      auth.login(() => window.location.replace('http://localhost:3000/home'));
+
     }
   };
 

@@ -37,7 +37,9 @@ const Register = (props) => {
       console.log('accessToken', accessToken);
       localStorage.setItem('accessToken', accessToken);
       props.setIsAuthenticated(true);
-      auth.login(() => props.history.push('/home'));
+      // auth.login(() => props.history.push('/home'));
+      auth.login(() => window.location.replace('http://localhost:3000/home'));
+
     }
   };
 
