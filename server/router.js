@@ -7,7 +7,7 @@ router.post('/register', controller.create);
 router.post('/login', controller.login);
 router.get('/home', authMiddleware, controller.home);
 router.get('/:location/:type', controller.getPlaces);
-router.post('/logout', authMiddleware, controller.logout);
+// router.post('/logout', authMiddleware, controller.logout);
 
 
 module.exports = router;

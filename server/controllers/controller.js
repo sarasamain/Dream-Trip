@@ -55,7 +55,6 @@ exports.getPlaces = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  console.log('Create controller, res:', res)
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
   if (user)
@@ -71,7 +70,8 @@ exports.create = async (req, res) => {
   try {
     const { _id } = await newUser.save();
     const accessToken = jwt.sign({ _id }, SECRET_KEY);
-    res.status(201).send({ accessToken });
+    console.log('accesToken from server', accessToken, newUser);
+    res.status(201).send({ token: accessToken, firstName: newUser.firstName });
   } catch (error) {
     res.status(400).send({ error, message: 'Could not create user' });
   }
@@ -100,8 +100,4 @@ exports.home= async (req, res) => {
   } catch {
     res.status(404).send({ error, message: 'Resource not found' });
   }
-};
-
-exports.logout = (req, res) => {
-  
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import auth from '../utils/auth';
-import apiServiceJWT from '../ApiServiceJWT';
 import { Link } from 'react-router-dom';
 
 const Logout = (props) => {
@@ -11,7 +10,6 @@ const Logout = (props) => {
 
   const removeToken = () => {
     localStorage.removeItem('accessToken');
-    // apiServiceJWT.logout('accessToken');
   };
 
   const handleAuth = () => {

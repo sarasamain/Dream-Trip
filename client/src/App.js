@@ -33,7 +33,7 @@ function App({ categoryStates }) {
   const [placeEntities, setPlaceEntities] = useState({});
   const [filteredCategories, setCategories] = useState([]);
   const initialState = auth.isAuthenticated();
-  // eslint-disable-next-line
+  console.log(initialState);
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
 
   useEffect(() => {

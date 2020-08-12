@@ -1,8 +1,8 @@
 const BASE_URL = 'http://localhost:3079';
 
-const apiServiceJWT = {};
+const apiService = {};
 
-apiServiceJWT.register = (user) => {
+apiService.register = (user) => {
   console.log('apiService.register, user', user)
   return fetch(`${BASE_URL}/register`, {
     method: 'POST',
@@ -11,11 +11,18 @@ apiServiceJWT.register = (user) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user),
   })
-    .then((res) => res)
+  .then((res) => {
+      // console.log('register res', res.json());
+      return res.json();
+    })
+    .then((token) => {
+      console.log(token);
+      return token;
+    })
     .catch((err) => console.log('I got here', err));
 };
 
-apiServiceJWT.login = (user) => {
+apiService.login = (user) => {
   console.log('apiService.login, user', user)
   return fetch(`${BASE_URL}/login`, {
     method: 'POST',
@@ -28,7 +35,7 @@ apiServiceJWT.login = (user) => {
     .catch((err) => console.log(err));
 };
 
-apiServiceJWT.profile = (accessToken) => {
+apiService.profile = (accessToken) => {
   console.log('apiService.profile, accessToken', accessToken)
   return fetch(`${BASE_URL}/home`, {
     method: 'GET',
@@ -43,7 +50,7 @@ apiServiceJWT.profile = (accessToken) => {
     .catch((err) => console.log(err));
 };
 
-apiServiceJWT.logout = (tokenName) => {
+apiService.logout = (tokenName) => {
   localStorage.removeItem(tokenName);
   // return fetch(`${BASE_URL}/logout`, {
   //   method: 'POST',
@@ -58,4 +65,4 @@ apiServiceJWT.logout = (tokenName) => {
   //   .catch((err) => console.log(err));
 };
 
-export default apiServiceJWT;
+export default apiService;

@@ -1,7 +1,7 @@
 import Button from '@material-ui/core/Button';
 import React, { useState } from 'react';
 import auth from '../utils/auth';
-import apiServiceJWT from '../ApiServiceJWT';
+import apiService from '../ApiService';
 
 const initialState = {
   email: '',
@@ -24,7 +24,7 @@ const Login = (props) => {
     e.preventDefault();
     const { email, password } = state;
     const user = { email, password };
-    const res = await apiServiceJWT.login(user);
+    const res = await apiService.login(user);
 
     if (res.error) {
       alert(`${res.message}`);

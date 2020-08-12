@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import auth from '../utils/auth';
-import apiServiceJWT from './../ApiServiceJWT';
+import apiService from './../ApiService';
 import Button from '@material-ui/core/Button';
 
 
@@ -23,18 +23,17 @@ const Register = (props) => {
   };
 
   const handleSubmit = async (e) => {
-    // Check the client-session to see how to handle redirects
     e.preventDefault();
     const { email, password, firstName, lastName } = state;
     const user = { email, password, firstName, lastName };
-    const res = await apiServiceJWT.register(user);
+    const res = await apiService.register(user);
     console.log('handleSubmit res', res);
 
     if (res.error) {
       alert(`${res.message}`);
       setState(initialState);
     } else {
-      const { accessToken } = res;
+      const accessToken = res.token;
       console.log('accessToken', accessToken);
       localStorage.setItem('accessToken', accessToken);
       props.setIsAuthenticated(true);

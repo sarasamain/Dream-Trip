@@ -1,12 +1,19 @@
 import Button from '@material-ui/core/Button';
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Auth ({ isAuthenticated }) {
-
+  console.log('Auth isAuthenticated from props', isAuthenticated);
   return (
     <div>
-      {/* {isAuthenticated ? ( */}
+      {isAuthenticated ? (
+        <Button 
+        variant="contained" 
+        color="default" 
+        component={Link}
+        to="/logout"
+        >Logout</Button>
+      ) : (
         <div>
           <Button 
             variant="contained" 
@@ -20,15 +27,14 @@ function Auth ({ isAuthenticated }) {
             component={Link}
             to="/register"
           >Register</Button>
-        </div>
-        {/* ) : ( */}
-        <Button 
-          variant="contained" 
-          color="default" 
-          component={Link}
-          to="/logout"
-        >Logout</Button>
-      {/* )} */}
+          <Button 
+            variant="contained" 
+            color="default" 
+            component={Link}
+            to="/home"
+        >Continue as Guest</Button>
+      </div>
+        )}
     </div>
   );
 }
