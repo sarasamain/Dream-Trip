@@ -6,9 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from '../styles/detail-cards';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import '../styles/detail-cards.css';
 
 export default function ItineraryCard({
@@ -23,7 +20,6 @@ export default function ItineraryCard({
   startDate,
   endDate,
   assignDay,
-  assignedDay,
 }) {
 
   const classes = useStyles();
@@ -38,10 +34,6 @@ export default function ItineraryCard({
     days.push(i);
   }
 
-  const handleChange = (event) => {
-    const newDay = event.target.value;
-    assignDay(newDay, id);
-  };
 
   return (
     <div className="itenerary-card">

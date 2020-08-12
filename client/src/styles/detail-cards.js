@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   details: {
     display: 'flex-start',
     flexDirection: 'column',
-    width: 400,
+    width: '50vh',
   },
   button: {
     display: 'flex-end',
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex-start',
   },
   cover: {
-    width: 151,
+    width: '25vh',
   },
   margin: {
     margin: theme.spacing(1),
