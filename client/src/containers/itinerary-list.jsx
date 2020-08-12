@@ -66,7 +66,7 @@ export default function ItineraryList({
                       startDate={startDate}
                       endDate={endDate}
                       assignDay={assignDay}
-                      imgUrl={place.photos[0].photo_reference}
+                      // imgUrl={place.photos[0].photo_reference}
                       assignedDay={place.day}
                     />
                   </Grid>

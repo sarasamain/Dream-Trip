@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Map from '../components/map';
 import ItineraryList from '../containers/itinerary-list';
 import Grid from '@material-ui/core/Grid';
 import TopBar from '../components/top-bar';
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+let placeEntities = require('../utils/__test__/mocks').mocks.placeEntities;
 
-function MapItinerary({ places, setPlaces, removePlace, tripDuration, handleAsssignDay, startDate, endDate }) {
-  let uniquePlaces = Object.values(places);
+function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, startDate, endDate }) {
+  let uniquePlacesArr = Object.values(places);
+  console.log(uniquePlacesArr)
+  const [uniquePlaces, setUniquePlaces] = useState(uniquePlacesArr);
+
+  useEffect(() => {
+    console.log(uniquePlacesArr)
+    setUniquePlaces(uniquePlacesArr);
+  }, []);
+
+  console.log('unique places state', uniquePlaces)
 
   const duration = tripDuration(startDate, endDate);
   const days = [];
@@ -16,10 +26,10 @@ function MapItinerary({ places, setPlaces, removePlace, tripDuration, handleAsss
   }
 
   const reorder = (list, startIndex, endIndex, draggableId) => {
+    const selectedElement = list.filter(el => el.place_id === draggableId).pop()
     const result = Array.from(list);
     const removed = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, draggableId);
-    console.log('reorder result', result)
+    result.splice(endIndex, 0, selectedElement);
     return result;
   };
 
@@ -52,20 +62,17 @@ function MapItinerary({ places, setPlaces, removePlace, tripDuration, handleAsss
     const dInd = +destination.droppableId;
 
     if (sInd === dInd) {
-      const items = reorder(places[sInd], source.index, destination.index, draggableId);
-      console.log(items);
-      const newState = [...places];
-      console.log(newState[sInd]);
-      newState[sInd] = items;
-      console.log('newState same index', newState);
-      setPlaces(newState);
+      const reorderedItems = reorder(uniquePlaces, source.index, destination.index, draggableId);
+      console.log('reordered items', reorderedItems);
+      const newState = [...reorderedItems];
+      setUniquePlaces(newState);
     } else {
-      const result = move(places[sInd], places[dInd], source, destination);
-      const newState = [...places];
+      const result = move(uniquePlaces[sInd], uniquePlaces[dInd], source, destination);
+      const newState = [...uniquePlaces];
       newState[sInd] = result[sInd];
       newState[dInd] = result[dInd];
 
-      setPlaces(newState.filter(group => group.length));
+      setUniquePlaces(newState.filter(group => group.length));
     }
   }
   const grid = 8;
@@ -82,7 +89,7 @@ function MapItinerary({ places, setPlaces, removePlace, tripDuration, handleAsss
       <Grid container direction="row">
         <Grid item xs={6}>
           <div style={{ position: 'fixed' }}>
-            <Map uniquePlaces={[...uniquePlaces]} />
+            <Map uniquePlaces={uniquePlaces} />
           </div>
         </Grid>
         <Grid item xs={6}>
@@ -101,7 +108,7 @@ function MapItinerary({ places, setPlaces, removePlace, tripDuration, handleAsss
                       {/* <div style={{ padding: 15, overflow: 'scroll' }}>
                       <h2>{el}</h2> */}
                       <ItineraryList
-                        uniquePlaces={[...uniquePlaces]}
+                        uniquePlaces={uniquePlaces}
                         removePlace={removePlace}
                         tripDuration={tripDuration}
                         assignDay={handleAsssignDay}
