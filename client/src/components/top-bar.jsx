@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TopBar({ heading, buttonPath, buttonName }) {
+export default function TopBar({ heading, buttonPath, buttonName, action }) {
   const classes = useStyles();
 
   return (
@@ -49,6 +49,7 @@ export default function TopBar({ heading, buttonPath, buttonName }) {
             component={Link}
             to={buttonPath}
             className={classes.submit}
+            onClick={action}
           >
             {buttonName}
           </Button>
