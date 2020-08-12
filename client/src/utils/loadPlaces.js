@@ -1,7 +1,7 @@
 // RUSHABH TO TEST
 const getExplorePlaces = (allPlaces, placeNum) => {
   const len = allPlaces.length;
-  
+
   let extraPlaces = allPlaces.slice(Math.min(len, placeNum));
   return extraPlaces.reduce((acc, place) => {
     return {
@@ -9,7 +9,7 @@ const getExplorePlaces = (allPlaces, placeNum) => {
       [place.place_id]: Object.assign(
         place,
         { inMyList: false },
-        { day: 0 }
+        { day: 1 }
       ),
     };
   }, {});
@@ -25,7 +25,7 @@ const getRecommendedPlaces = (allPlaces, placeNum) => {
       [place.place_id]: Object.assign(
         place,
         { inMyList: true },
-        { day: 0 }
+        { day: 1 }
       ),
     };
   }, {});

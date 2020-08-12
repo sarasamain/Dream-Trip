@@ -9,7 +9,8 @@ export default function ItineraryList({
   tripDuration,
   assignDay,
   startDate,
-  endDate
+  endDate,
+  day
 }) {
 
 
@@ -34,7 +35,6 @@ export default function ItineraryList({
     <Grid container direction="column" spacing={2}>
       {uniquePlaces
         .map((place, index) => {
-          count++;
 
           return (
             <Draggable
@@ -52,13 +52,13 @@ export default function ItineraryList({
                     provided.draggableProps.style
                   )}
                 >
-                  
+
                   <Grid item>
                     <ItineraryCard
                       removePlace={removePlace}
                       key={place.place_id}
                       id={place.place_id}
-                      name={`${count}. ${place.name}`}
+                      name={`${day}.${index + 1}. ${place.name}`}
                       address={place.formatted_address}
                       price={place.price_level}
                       rating={place.rating}
