@@ -1,5 +1,4 @@
 function getPlaces(path) {
-  console.log('fetching places');
   return fetchRequest(path);
 }
 

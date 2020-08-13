@@ -34,7 +34,6 @@ export default function ItineraryCard({
     days.push(i);
   }
 
-
   return (
     <div className="itenerary-card">
       <Card className={classes.root}>

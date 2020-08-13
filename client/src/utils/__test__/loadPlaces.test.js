@@ -8,6 +8,7 @@ let allPlaces = require('./mocks').mocks.allPlaces;
 let getExplorePlacesReturn = require('./mocks').mocks.getExplorePlacesReturn;
 let getRecommendedPlacesReturn = require('./mocks').mocks.getRecommendedPlacesReturn;
 let placeEntities = require('./mocks').mocks.placeEntities;
+
 describe('loadPlaces functions', () => {
   describe('getExplorePlaces', () => {
     it('testing getExplorePlaces function to retrieve all places given input', () => {

@@ -3,6 +3,11 @@ import './App.css';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/home';
+import Login from './components/login';
+import Register from './components/register';
+import Logout from './components/logout';
+import Auth from './views/auth';
+import auth from './utils/auth';
 import moment from 'moment';
 import {
   loadPlacesPerCategory
@@ -27,6 +32,8 @@ function App({ categoryStates }) {
   const [exploreplaces, setExplorePlaces] = useState([]);
   const [placeEntities, setPlaceEntities] = useState({});
   const [filteredCategories, setCategories] = useState([]);
+  const initialState = auth.isAuthenticated();
+  const [isAuthenticated, setIsAuthenticated] = useState(initialState);
 
   useEffect(() => {
     setPlaceEntities({});
@@ -39,7 +46,6 @@ function App({ categoryStates }) {
     setCategories(filterCategory);
   }, [categoryStates]);
 
-  // AMINA
   const loadPlaces = () => {
     filteredCategories.map((category) => {
       return loadPlacesPerCategory(destination, category)
@@ -65,28 +71,24 @@ function App({ categoryStates }) {
     });
   };
 
-  // SARA
   const helper = (place_id, trueOrFalse) => {
     const newEntities = { ...placeEntities };
     newEntities[place_id].inMyList = trueOrFalse;
     setPlaceEntities(newEntities);
   };
 
-  // RUSHABH
   const addPlace = (id) => {
     helper(id, true);
     setPlaces([...places, id]);
     setExplorePlaces(exploreplaces.filter((place_id) => place_id !== id));
   };
 
-  // SARA
   const removePlace = (place_id) => {
     helper(place_id, false);
     setPlaces(places.filter((id) => place_id !== id));
     setExplorePlaces([...exploreplaces, place_id]);
   };
 
-  // SARA
   const handleAsssignDay = (day, id) => {
     const newEntities = { ...placeEntities };
     newEntities[id].day = day;
@@ -96,11 +98,30 @@ function App({ categoryStates }) {
   return (
     <Router>
       <Switch>
+        <Route 
+          path='/login'
+          render={() => (
+            <Login setIsAuthenticated={setIsAuthenticated} />
+          )}
+        />
+        <Route 
+          path='/register'
+          render={(props) => (
+            <Register {...props} setIsAuthenticated={setIsAuthenticated} />
+          )}
+        />
+        <Route 
+          path='/logout'
+          render={(props) => (
+            <Logout {...props} setIsAuthenticated={setIsAuthenticated} />
+          )}
+        />
         <Route
           exact
-          path="/"
+          path="/home"
           render={() => (
             <Home
+              setIsAuthenticated={setIsAuthenticated}
               setStartDate={setStartDate}
               setEndDate={setEndDate}
               setDestination={setDestination}
@@ -115,6 +136,7 @@ function App({ categoryStates }) {
           path="/Recommendation"
           render={() => (
             <Recommendation
+              setIsAuthenticated={setIsAuthenticated}
               loadPlaces={loadPlaces}
               places={places.map((id) => placeEntities[id])}
               exploreplaces={exploreplaces.map((id) => placeEntities[id])}
@@ -127,6 +149,7 @@ function App({ categoryStates }) {
           path="/MapItinerary"
           render={() => (
             <MapItinerary
+              setIsAuthenticated={setIsAuthenticated}
               places={places.map((id) => placeEntities[id])}
               setPlaces={setPlaces}
               removePlace={removePlace}
@@ -135,6 +158,12 @@ function App({ categoryStates }) {
               endDate={endDate}
               handleAsssignDay={handleAsssignDay}
             />
+          )}
+        />
+        <Route 
+          path='/'
+          render={() => (
+            <Auth isAuthenticated={isAuthenticated} />
           )}
         />
       </Switch>

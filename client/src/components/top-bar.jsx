@@ -53,6 +53,12 @@ export default function TopBar({ heading, buttonPath, buttonName, action }) {
           >
             {buttonName}
           </Button>
+          <Button 
+          variant="contained" 
+          color="default" 
+          component={Link}
+          to="/logout"
+        >Logout</Button>
         </Toolbar>
       </AppBar>
     </div>

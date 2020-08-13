@@ -27,3 +27,10 @@ yarn-error.log*
 
 #snapshots
 /src/views/__test__/__snapshots__/Recommendation.test.js.snap
+
+#OAuth
+client_secret_694952899689-pigf65c9dcaqqtil0ecdso0ovjfmv6t3.apps.googleusercontent.com.json
+client_secret.json
+
+#package json
+package-lock.json
