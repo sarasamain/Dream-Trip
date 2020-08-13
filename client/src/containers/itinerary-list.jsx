@@ -27,20 +27,23 @@ export default function ItineraryList({
     // styles we need to apply on draggables
     ...draggableStyle
   });
+
   return (
     <Grid container direction="column" spacing={2}>
       {uniquePlaces
         .map((place, index) => {
 
           return (
-            <Grid item>
 
-              <Draggable
-                key={place.place_id}
-                draggableId={place.place_id}
-                index={index}
-              >
+
+            <Draggable
+              key={place.place_id}
+              draggableId={place.place_id}
+              index={index}
+            >
+              
                 {(provided, snapshot) => (
+                  <Grid item>
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
@@ -67,9 +70,11 @@ export default function ItineraryList({
                       assignedDay={place.day}
                     />
                   </div>
+                  </Grid>
                 )}
-              </Draggable>
-            </Grid>
+             
+            </Draggable>
+
 
           );
         })

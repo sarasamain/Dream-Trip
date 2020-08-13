@@ -12,6 +12,7 @@ import modalStyle from './../styles/modal.css';
 import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import {reorder, move } from './utils/dnd';
 import '../styles/mapItinerary.css';
 
 function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, startDate, endDate }) {
@@ -25,38 +26,8 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
 
   const [days, setDays] = useState(initialDayState);
 
-  const reorder = (list, startIndex, endIndex, draggableId) => {
-    const selectedElement = list.find(el => el.place_id === draggableId)
-    const result = Array.from(list);
-    result.splice(startIndex, 1);
-    result.splice(endIndex, 0, selectedElement);
-    return result;
-  };
-
-  /**
- * Moves an item from one list to another list.
- */
-  const move = (source, destination, droppableSource, droppableDestination, draggableId, dInd) => {
-    const sourceClone = Array.from(source);
-    const destClone = Array.from(destination);
-    const selectedElement = sourceClone.find(el => el.place_id === draggableId)
-
-    selectedElement.day = dInd;
-    console.log('selectedElement', selectedElement);
-    sourceClone.splice(droppableSource.index, 1);
-
-    destClone.splice(droppableDestination.index, 0, selectedElement);
-    console.log('destClone', destClone);
-    const result = {};
-    result[droppableSource.droppableId] = sourceClone;
-    result[droppableDestination.droppableId] = destClone;
-
-    return result;
-  };
-
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
-
     // dropped outside the list
     if (!destination) {
       return;
@@ -68,11 +39,9 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
 
     if (sInd === dInd) {
       const reorderedItems = reorder(days[sInd], source.index, destination.index, draggableId);
-
       setDays((previousDays) => ({ ...previousDays, [sInd]: reorderedItems }))
     } else {
       const result = move(days[sInd], days[dInd], source, destination, draggableId, dInd);
-
       setDays((previousDays) => ({ ...previousDays, [sInd--]: result[sInd], [dInd--]: result[dInd] }));
     }
   }

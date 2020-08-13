@@ -3,20 +3,18 @@ import './App.css';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/home';
+import Spinner from './components/spinner';
+import Categories from './views/Categories';
+import MapItinerary from './views/MapItinerary';
+import Recommendation from './views/Recommendation';
 import moment from 'moment';
-import {
-  loadPlacesPerCategory
-} from './api/getPlaces';
+import { loadPlacesPerCategory } from './api/getPlaces';
 import {
   getExplorePlaces,
   getRecommendedPlaces,
   defineRecommendedPlaces,
   defineExplorePlaces
 } from './utils/loadPlaces'
-import Categories from './views/Categories';
-import MapItinerary from './views/MapItinerary';
-import Recommendation from './views/Recommendation';
-
 import { tripDuration, placesPerType } from './utils/homeFunctions';
 
 function App({ categoryStates }) {
@@ -27,9 +25,11 @@ function App({ categoryStates }) {
   const [exploreplaces, setExplorePlaces] = useState([]);
   const [placeEntities, setPlaceEntities] = useState({});
   const [filteredCategories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setPlaceEntities({});
+    setLoading(false)
   }, []);
 
   useEffect(() => {
@@ -39,7 +39,6 @@ function App({ categoryStates }) {
     setCategories(filterCategory);
   }, [categoryStates]);
 
-  // AMINA
   const loadPlaces = () => {
     filteredCategories.map((category) => {
       return loadPlacesPerCategory(destination, category)
@@ -61,32 +60,28 @@ function App({ categoryStates }) {
             ...exploreplaces,
             ...newExplorePlaces,
           ]);
-        });
+        })
     });
   };
 
-  // SARA
   const helper = (place_id, trueOrFalse) => {
     const newEntities = { ...placeEntities };
     newEntities[place_id].inMyList = trueOrFalse;
     setPlaceEntities(newEntities);
   };
 
-  // RUSHABH
   const addPlace = (id) => {
     helper(id, true);
     setPlaces([...places, id]);
     setExplorePlaces(exploreplaces.filter((place_id) => place_id !== id));
   };
 
-  // SARA
   const removePlace = (place_id) => {
     helper(place_id, false);
     setPlaces(places.filter((id) => place_id !== id));
     setExplorePlaces([...exploreplaces, place_id]);
   };
 
-  // SARA
   const handleAsssignDay = (day, id) => {
     const newEntities = { ...placeEntities };
     newEntities[id].day = day;
@@ -126,6 +121,8 @@ function App({ categoryStates }) {
         <Route
           path="/MapItinerary"
           render={() => (
+              (loading) ? <Spinner />
+                :
             <MapItinerary
               places={places.map((id) => placeEntities[id])}
               setPlaces={setPlaces}
