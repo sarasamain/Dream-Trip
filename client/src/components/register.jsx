@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import auth from '../utils/auth';
 import apiService from './../ApiService';
 import Button from '@material-ui/core/Button';
+import '../styles/auth.css';
+import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 
 
 const initialState = {
@@ -27,14 +30,12 @@ const Register = (props) => {
     const { email, password, firstName, lastName } = state;
     const user = { email, password, firstName, lastName };
     const res = await apiService.register(user);
-    console.log('handleSubmit res', res);
 
     if (res.error) {
       alert(`${res.message}`);
       setState(initialState);
     } else {
       const accessToken = res.token;
-      console.log('accessToken', accessToken);
       localStorage.setItem('accessToken', accessToken);
       props.setIsAuthenticated(true);
       // auth.login(() => props.history.push('/home'));
@@ -50,41 +51,62 @@ const Register = (props) => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form className="form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="name@mail.com"
-          name="email"
-          value={state.email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="supersecretthingy"
-          name="password"
-          value={state.password}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder="Name"
-          name="firstName"
-          value={state.firstName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder="Nameson"
-          name="lastName"
-          value={state.lastName}
-          onChange={handleChange}
-        />
-        <Button variant="contained" color="primary" className="form-submit" type="submit" disabled={validateForm()}>
-          &nbsp;Register&nbsp;
+    <div className="auth-container background">
+      <div className="buttons-container">
+        <h2>Register</h2>
+        <br></br>
+        <form className="register-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="name@mail.com"
+            name="email"
+            value={state.email}
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            value={state.password}
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="text"
+            placeholder="Name"
+            name="firstName"
+            value={state.firstName}
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="text"
+            placeholder="Surname"
+            name="lastName"
+            value={state.lastName}
+            onChange={handleChange}
+          />
+          <br></br>
+          <Button variant="contained" color="primary" className="form-submit" type="submit" disabled={validateForm()}>
+            &nbsp;Register&nbsp;
+          </Button>
+        </form>
+        <br></br>
+        <br></br>
+        <Typography variant="body2" color="textSecondary" align="center">
+          {"Do you already have an account?"}
+        </Typography>
+        <br></br>
+        <Button 
+            variant="contained" 
+            color="primary" 
+            component={Link}
+            to="/login"
+          > Login 
         </Button>
-      </form>
+        <br></br>
+      </div>
     </div>
   );
 };

@@ -10,7 +10,6 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
   return (
     <div>
       <TopBar heading="Map" buttonPath="/MapItinerary" buttonName="Email Me" />
-      {console.log(uniquePlaces)}
       <Grid container direction="row">
         <Grid item xs={6}>
           <div style={{ position: 'fixed' }}>

@@ -66,11 +66,9 @@ exports.create = async (req, res) => {
     ...req.body,
     password: hash,
   });
-  console.log('newUser', newUser);
   try {
     const { _id } = await newUser.save();
     const accessToken = jwt.sign({ _id }, SECRET_KEY);
-    console.log('accesToken from server', accessToken, newUser);
     res.status(201).send({ token: accessToken, firstName: newUser.firstName });
   } catch (error) {
     res.status(400).send({ error, message: 'Could not create user' });

@@ -33,7 +33,6 @@ function App({ categoryStates }) {
   const [placeEntities, setPlaceEntities] = useState({});
   const [filteredCategories, setCategories] = useState([]);
   const initialState = auth.isAuthenticated();
-  console.log(initialState);
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
 
   useEffect(() => {
@@ -47,7 +46,6 @@ function App({ categoryStates }) {
     setCategories(filterCategory);
   }, [categoryStates]);
 
-  // AMINA
   const loadPlaces = () => {
     filteredCategories.map((category) => {
       return loadPlacesPerCategory(destination, category)
@@ -73,28 +71,24 @@ function App({ categoryStates }) {
     });
   };
 
-  // SARA
   const helper = (place_id, trueOrFalse) => {
     const newEntities = { ...placeEntities };
     newEntities[place_id].inMyList = trueOrFalse;
     setPlaceEntities(newEntities);
   };
 
-  // RUSHABH
   const addPlace = (id) => {
     helper(id, true);
     setPlaces([...places, id]);
     setExplorePlaces(exploreplaces.filter((place_id) => place_id !== id));
   };
 
-  // SARA
   const removePlace = (place_id) => {
     helper(place_id, false);
     setPlaces(places.filter((id) => place_id !== id));
     setExplorePlaces([...exploreplaces, place_id]);
   };
 
-  // SARA
   const handleAsssignDay = (day, id) => {
     const newEntities = { ...placeEntities };
     newEntities[id].day = day;
@@ -103,7 +97,6 @@ function App({ categoryStates }) {
 
   return (
     <Router>
-    {/* <Auth isAuthenticated={isAuthenticated}/>  */}
       <Switch>
         <Route 
           path='/login'
