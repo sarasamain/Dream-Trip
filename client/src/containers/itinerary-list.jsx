@@ -13,9 +13,6 @@ export default function ItineraryList({
   day
 }) {
 
-
-  let count = 0;
-
   const grid = 8;
 
   const getItemStyle = (isDragging, draggableStyle) => ({
@@ -37,23 +34,24 @@ export default function ItineraryList({
         .map((place, index) => {
 
           return (
-            <Draggable
-              key={place.place_id}
-              draggableId={place.place_id}
-              index={index}
-            >
-              {(provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                  style={getItemStyle(
-                    snapshot.isDragging,
-                    provided.draggableProps.style
-                  )}
-                >
+            <Grid item>
 
-                  <Grid item>
+              <Draggable
+                key={place.place_id}
+                draggableId={place.place_id}
+                index={index}
+              >
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    style={getItemStyle(
+                      snapshot.isDragging,
+                      provided.draggableProps.style
+                    )}
+                  >
+
                     <ItineraryCard
                       removePlace={removePlace}
                       key={place.place_id}
@@ -66,13 +64,14 @@ export default function ItineraryList({
                       startDate={startDate}
                       endDate={endDate}
                       assignDay={assignDay}
-                      // imgUrl={place.photos[0].photo_reference}
+                      imgUrl={place.photos[0].photo_reference}
                       assignedDay={place.day}
                     />
-                  </Grid>
-                </div>
-              )}
-            </Draggable>
+                  </div>
+                )}
+              </Draggable>
+            </Grid>
+
           );
         })
         .sort((a, b) => a.day - b.day)}

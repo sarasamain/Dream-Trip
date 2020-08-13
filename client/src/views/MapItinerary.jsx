@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Map from '../components/map';
 import ItineraryList from '../containers/itinerary-list';
 import Grid from '@material-ui/core/Grid';
@@ -36,14 +36,17 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
   /**
  * Moves an item from one list to another list.
  */
-  const move = (source, destination, droppableSource, droppableDestination, draggableId) => {
+  const move = (source, destination, droppableSource, droppableDestination, draggableId, dInd) => {
     const sourceClone = Array.from(source);
     const destClone = Array.from(destination);
     const selectedElement = sourceClone.find(el => el.place_id === draggableId)
-    const removed = sourceClone.splice(droppableSource.index, 1);
+
+    selectedElement.day = dInd;
+    console.log('selectedElement', selectedElement);
+    sourceClone.splice(droppableSource.index, 1);
 
     destClone.splice(droppableDestination.index, 0, selectedElement);
-
+    console.log('destClone', destClone);
     const result = {};
     result[droppableSource.droppableId] = sourceClone;
     result[droppableDestination.droppableId] = destClone;
@@ -68,7 +71,7 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
 
       setDays((previousDays) => ({ ...previousDays, [sInd]: reorderedItems }))
     } else {
-      const result = move(days[sInd], days[dInd], source, destination, draggableId);
+      const result = move(days[sInd], days[dInd], source, destination, draggableId, dInd);
 
       setDays((previousDays) => ({ ...previousDays, [sInd--]: result[sInd], [dInd--]: result[dInd] }));
     }
@@ -78,16 +81,15 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
   const getListStyle = isDraggingOver => ({
     background: "white",
     padding: grid,
-    width: '80vh'
+    width: '60vh'
   });
 
   const userEmail = "test@test.com"
-  const [ isModalOpen, setIsModalOpen ] = useState(false);
-  const [ emailRecipients, setEmailRecipients] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [emailRecipients, setEmailRecipients] = useState('')
 
   const handleEmailMe = function () {
     setIsModalOpen(true);
-    console.log(uniquePlaces);
   }
 
   const handleCloseModal = function () {
@@ -99,9 +101,9 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
     setEmailRecipients(event.target.value)
   }
 
-  const handleSendEmail = function (event){
+  const handleSendEmail = function (event) {
     event.preventDefault();
-    sendEmail(uniquePlaces, emailRecipients);
+    sendEmail(days, emailRecipients);
     setIsModalOpen(false);
     setEmailRecipients('');
   }
@@ -118,12 +120,12 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
     <div>
       <TopBar heading="Map" action={handleEmailMe} buttonName="Email Me" />
       <Grid container direction="row">
-        <Grid item xs={6}>
-         
-            <Map days={days} />
-          
+        <Grid item xs={6} style={{ boxSizing: 'border-box' }}>
+
+          <Map days={days} />
+
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} style={{ paddingRight: '2%' }}>
           <DragDropContext onDragEnd={onDragEnd}>
             {Object.keys(days).map((el, ind) => (
               <div className="day-div">
@@ -180,7 +182,7 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
           </Button>
           {/* <Button className="send-email" type="submit" onClick={handleSendEmail}>Send</Button> */}
         </form>
-        <Animation className="animation"/>
+        <Animation className="animation" />
       </Modal>
     </div>
   );
