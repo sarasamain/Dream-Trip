@@ -27,3 +27,6 @@ yarn-error.log*
 
 #snapshots
 /src/views/__test__/__snapshots__/Recommendation.test.js.snap
+
+#package-lock json
+package-lock.json
