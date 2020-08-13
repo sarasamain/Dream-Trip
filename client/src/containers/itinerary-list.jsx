@@ -27,7 +27,6 @@ export default function ItineraryList({
     // styles we need to apply on draggables
     ...draggableStyle
   });
-  console.log(uniquePlaces)
   return (
     <Grid container direction="column" spacing={2}>
       {uniquePlaces

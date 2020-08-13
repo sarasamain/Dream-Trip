@@ -1,5 +1,6 @@
 .send-email-modal {
-  background-color: #fff;
+  background-color: #c2e8ff;
+  border-radius: 30px;
   width: 70vw;
   height: 60vh;
   padding: 70px;
@@ -10,9 +11,11 @@
 .send-email-form {
   display: flex;
   flex-direction: column;
+  width: 70%;
+  margin: 40px auto 0 auto;
 }
 
-.close-modal {
+.send-email-modal .close-modal {
   background-color: grey;
   float: right;
   border: none;
@@ -29,10 +32,10 @@
 }
 
 #email {
-  width: 70%;
   align-self: center;
   display: block;
   margin: 0 auto;
+  background: aliceblue;
 }
 
 .send-email {
@@ -44,4 +47,10 @@
 .animation {
   height: 100px;
   width: 100px;
+}
+
+.send-email-modal button{
+  width: 40%;
+  height: 50px;
+  margin: 20px auto 0 auto;
 }

@@ -2,7 +2,6 @@ const nodemailer = require('nodemailer');
 const Handlebars = require('handlebars');
 
 exports.sendEmail = (req, res) => {
-  console.log(req.body);
   const data = req.body.data
 
   const source =
@@ -47,7 +46,9 @@ exports.sendEmail = (req, res) => {
       <strong>Day:</strong> {{day}}
     </p>
   </div>
-  {{/each}}`
+  {{/each}}
+  <p><em>From all os us here at Dream-Trip</em></p>
+  <h4><em>Enjoy your holiday</em></h4>`
 
   const template = Handlebars.compile(source);
   const result = template(data);

@@ -5,7 +5,6 @@ const sendEmail = async (data, email) => {
   dataKeys
   .sort((a, b) => a - b)
   .forEach(el=>(newData.push(...data[el])));
-  console.log(newData);
   
   const url = 'http://localhost:3079/sendemail';
   const payload = {

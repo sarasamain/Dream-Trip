@@ -180,7 +180,6 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
           >
             Send
           </Button>
-          {/* <Button className="send-email" type="submit" onClick={handleSendEmail}>Send</Button> */}
         </form>
         <Animation className="animation" />
       </Modal>
