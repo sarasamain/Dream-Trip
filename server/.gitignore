@@ -3,3 +3,4 @@
 
 #secret info
 .env
+process.env

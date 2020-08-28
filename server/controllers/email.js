@@ -1,11 +1,10 @@
-const nodemailer = require('nodemailer');
-const Handlebars = require('handlebars');
+const nodemailer = require("nodemailer");
+const Handlebars = require("handlebars");
 
 exports.sendEmail = (req, res) => {
-  const data = req.body.data
+  const data = req.body.data;
 
-  const source =
-  `<h1>Here's your Dream Trip Itinerary</h1>
+  const source = `<h1>Here's your Dream Trip Itinerary</h1>
   {{#each this}}
   <div style="
     border-style: solid;
@@ -48,34 +47,32 @@ exports.sendEmail = (req, res) => {
   </div>
   {{/each}}
   <p><em>From all os us here at Dream-Trip</em></p>
-  <h4><em>Enjoy your holiday</em></h4>`
+  <h4><em>Enjoy your holiday</em></h4>`;
 
   const template = Handlebars.compile(source);
   const result = template(data);
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
       user: process.env.EMAIL,
-      pass: process.env.PASSWORD
-    }
-  })
+      pass: process.env.PASSWORD,
+    },
+  });
 
   const mailOptions = {
     from: process.env.EMAIL,
-    to: req.body.email, // will get this from req body
-    subject: 'Your Dream Trip Itinerary', // will get this from req body
-    html: result
-  }
+    to: req.body.email,
+    subject: "Your Dream Trip Itinerary",
+    html: result,
+  };
 
-  transporter.sendMail(mailOptions, function(error, info){
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
-      res.send('error') // if error occurs send error as response to client
-    }
-    else {
-      console.log('Email sent: ' + info.response);
-      res.send('Sent Successfully')//if mail is sent successfully send Sent successfully as response
+      res.send("error");
+    } else {
+      res.send("Sent Successfully");
     }
   });
-}
+};
