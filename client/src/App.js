@@ -7,6 +7,11 @@ import Spinner from './components/spinner';
 import Categories from './views/Categories';
 import MapItinerary from './views/MapItinerary';
 import Recommendation from './views/Recommendation';
+import Login from './components/login';
+import Register from './components/register';
+import Logout from './components/logout';
+import Auth from './views/auth';
+import auth from './utils/auth';
 import moment from 'moment';
 import { loadPlacesPerCategory } from './api/getPlaces';
 import {
@@ -26,6 +31,8 @@ function App({ categoryStates }) {
   const [placeEntities, setPlaceEntities] = useState({});
   const [filteredCategories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const initialState = auth.isAuthenticated();
+  const [isAuthenticated, setIsAuthenticated] = useState(initialState);
 
   useEffect(() => {
     setPlaceEntities({});
@@ -91,11 +98,30 @@ function App({ categoryStates }) {
   return (
     <Router>
       <Switch>
+        <Route 
+          path='/login'
+          render={() => (
+            <Login setIsAuthenticated={setIsAuthenticated} />
+          )}
+        />
+        <Route 
+          path='/register'
+          render={(props) => (
+            <Register {...props} setIsAuthenticated={setIsAuthenticated} />
+          )}
+        />
+        <Route 
+          path='/logout'
+          render={(props) => (
+            <Logout {...props} setIsAuthenticated={setIsAuthenticated} />
+          )}
+        />
         <Route
           exact
-          path="/"
+          path="/home"
           render={() => (
             <Home
+              setIsAuthenticated={setIsAuthenticated}
               setStartDate={setStartDate}
               setEndDate={setEndDate}
               setDestination={setDestination}
@@ -110,6 +136,7 @@ function App({ categoryStates }) {
           path="/Recommendation"
           render={() => (
             <Recommendation
+              setIsAuthenticated={setIsAuthenticated}
               loadPlaces={loadPlaces}
               places={places.map((id) => placeEntities[id])}
               exploreplaces={exploreplaces.map((id) => placeEntities[id])}
@@ -124,6 +151,7 @@ function App({ categoryStates }) {
               (loading) ? <Spinner />
                 :
             <MapItinerary
+              setIsAuthenticated={setIsAuthenticated}
               places={places.map((id) => placeEntities[id])}
               setPlaces={setPlaces}
               removePlace={removePlace}
@@ -132,6 +160,12 @@ function App({ categoryStates }) {
               endDate={endDate}
               handleAsssignDay={handleAsssignDay}
             />
+          )}
+        />
+        <Route 
+          path='/'
+          render={() => (
+            <Auth isAuthenticated={isAuthenticated} />
           )}
         />
       </Switch>
