@@ -1,8 +1,8 @@
-import React from 'react';
-import SimpleCard from '../components/simple-card';
-import Grid from '@material-ui/core/Grid';
-import classes from '../styles/categories';
-import TopBar from '../components/top-bar';
+import React from "react";
+import SimpleCard from "../components/simple-card";
+import Grid from "@material-ui/core/Grid";
+import classes from "../styles/categories";
+import TopBar from "../components/top-bar";
 
 function Categories() {
   return (
@@ -39,7 +39,6 @@ function Categories() {
             <SimpleCard index={5} />
           </Grid>
         </Grid>
-        {/* <Grid container justify="flex-end"> */}
         <Grid item></Grid>
       </div>
     </div>
