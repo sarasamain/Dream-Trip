@@ -1,2 +1,37 @@
 .DS_Store
 .eslintrc.js
+
+# dependencies
+*/node_modules
+*/package-lock.json
+
+#secret info
+*/.env
+
+client/.pnp
+client/.pnp.js
+
+# testing
+client/coverage
+client/views/__test__/__snapshots__/Recommendation.test.js.snap
+client/src/views/__test__/__snapshots__/Recommendation.test.js.snap
+
+# production
+client/build
+
+# misc
+.DS_Store
+*/.env.local
+*/.env.development.local
+*/.env.test.local
+*/.env.production.local
+*/npm-debug.log*
+*/yarn-debug.log*
+*/yarn-error.log*
+
+#snapshots
+client/src/views/__test__/__snapshots__/Recommendation.test.js.snap
+
+#OAuth
+client/client_secret_dreamtrip.json
+client/client_secret.json
