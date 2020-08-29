@@ -3,25 +3,23 @@ import './App.css';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/home';
+import Spinner from './components/spinner';
+import Categories from './views/Categories';
+import MapItinerary from './views/MapItinerary';
+import Recommendation from './views/Recommendation';
 import Login from './components/login';
 import Register from './components/register';
 import Logout from './components/logout';
 import Auth from './views/auth';
 import auth from './utils/auth';
 import moment from 'moment';
-import {
-  loadPlacesPerCategory
-} from './api/getPlaces';
+import { loadPlacesPerCategory } from './api/getPlaces';
 import {
   getExplorePlaces,
   getRecommendedPlaces,
   defineRecommendedPlaces,
   defineExplorePlaces
 } from './utils/loadPlaces'
-import Categories from './views/Categories';
-import MapItinerary from './views/MapItinerary';
-import Recommendation from './views/Recommendation';
-
 import { tripDuration, placesPerType } from './utils/homeFunctions';
 
 function App({ categoryStates }) {
@@ -32,11 +30,13 @@ function App({ categoryStates }) {
   const [exploreplaces, setExplorePlaces] = useState([]);
   const [placeEntities, setPlaceEntities] = useState({});
   const [filteredCategories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
   const initialState = auth.isAuthenticated();
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
 
   useEffect(() => {
     setPlaceEntities({});
+    setLoading(false)
   }, []);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function App({ categoryStates }) {
             ...exploreplaces,
             ...newExplorePlaces,
           ]);
-        });
+        })
     });
   };
 
@@ -148,6 +148,8 @@ function App({ categoryStates }) {
         <Route
           path="/MapItinerary"
           render={() => (
+              (loading) ? <Spinner />
+                :
             <MapItinerary
               setIsAuthenticated={setIsAuthenticated}
               places={places.map((id) => placeEntities[id])}

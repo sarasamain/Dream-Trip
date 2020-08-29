@@ -1,7 +1,7 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import ItineraryCard from '../components/itinerary-card';
-import { Draggable, } from "react-beautiful-dnd";
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import ItineraryCard from "../components/itinerary-card";
+import { Draggable } from "react-beautiful-dnd";
 
 export default function ItineraryList({
   uniquePlaces,
@@ -10,37 +10,33 @@ export default function ItineraryList({
   assignDay,
   startDate,
   endDate,
-  day
+  day,
 }) {
-
   const grid = 8;
 
   const getItemStyle = (isDragging, draggableStyle) => ({
-    // some basic styles to make the items look a bit nicer
     userSelect: "none",
     padding: grid * 2,
     margin: `0 0 ${grid}px 0`,
 
-    // change background colour if dragging
     background: isDragging ? "white" : "white",
 
-    // styles we need to apply on draggables
-    ...draggableStyle
+    ...draggableStyle,
   });
+
   return (
     <Grid container direction="column" spacing={2}>
       {uniquePlaces
         .map((place, index) => {
-
           return (
             <Grid item>
-
               <Draggable
                 key={place.place_id}
                 draggableId={place.place_id}
                 index={index}
               >
                 {(provided, snapshot) => (
+                  <Grid item>
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
@@ -50,7 +46,6 @@ export default function ItineraryList({
                       provided.draggableProps.style
                     )}
                   >
-
                     <ItineraryCard
                       removePlace={removePlace}
                       key={place.place_id}
@@ -67,14 +62,13 @@ export default function ItineraryList({
                       assignedDay={place.day}
                     />
                   </div>
+                  </Grid>
                 )}
               </Draggable>
             </Grid>
-
           );
         })
         .sort((a, b) => a.day - b.day)}
-
     </Grid>
   );
 }

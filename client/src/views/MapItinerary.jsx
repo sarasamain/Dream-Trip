@@ -1,52 +1,62 @@
-import React, { useState } from 'react';
-import Map from '../components/map';
-import ItineraryList from '../containers/itinerary-list';
-import Grid from '@material-ui/core/Grid';
-import TopBar from '../components/top-bar';
-import Modal from 'react-modal';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { sendEmail } from './../api/sendEmail';
-import Animation from './../components/animation';
-import modalStyle from './../styles/modal.css';
-import Icon from '@material-ui/core/Icon';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from "react";
+import Map from "../components/map";
+import ItineraryList from "../containers/itinerary-list";
+import Grid from "@material-ui/core/Grid";
+import TopBar from "../components/top-bar";
+import Modal from "react-modal";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { sendEmail } from "./../api/sendEmail";
+import Animation from "./../components/animation";
+import modalStyle from "./../styles/modal.css";
+import Icon from "@material-ui/core/Icon";
+import { makeStyles } from "@material-ui/core/styles";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import '../styles/mapItinerary.css';
+import "../styles/mapItinerary.css";
 
-function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, startDate, endDate }) {
-
+function MapItinerary({
+  places,
+  removePlace,
+  tripDuration,
+  handleAsssignDay,
+  startDate,
+  endDate,
+}) {
   const uniquePlacesArr = Object.values(places);
   const initialDayState = {};
   const duration = tripDuration(startDate, endDate);
   for (let i = 1; i <= duration; i++) {
-    initialDayState[i] = uniquePlacesArr.filter(place => place.day === i)
+    initialDayState[i] = uniquePlacesArr.filter((place) => place.day === i);
   }
 
   const [days, setDays] = useState(initialDayState);
 
   const reorder = (list, startIndex, endIndex, draggableId) => {
-    const selectedElement = list.find(el => el.place_id === draggableId)
+    const selectedElement = list.find((el) => el.place_id === draggableId);
     const result = Array.from(list);
     result.splice(startIndex, 1);
     result.splice(endIndex, 0, selectedElement);
     return result;
   };
 
-  /**
- * Moves an item from one list to another list.
- */
-  const move = (source, destination, droppableSource, droppableDestination, draggableId, dInd) => {
+  const move = (
+    source,
+    destination,
+    droppableSource,
+    droppableDestination,
+    draggableId,
+    dInd
+  ) => {
     const sourceClone = Array.from(source);
     const destClone = Array.from(destination);
-    const selectedElement = sourceClone.find(el => el.place_id === draggableId)
+    const selectedElement = sourceClone.find(
+      (el) => el.place_id === draggableId
+    );
 
     selectedElement.day = dInd;
-    console.log('selectedElement', selectedElement);
     sourceClone.splice(droppableSource.index, 1);
 
     destClone.splice(droppableDestination.index, 0, selectedElement);
-    console.log('destClone', destClone);
     const result = {};
     result[droppableSource.droppableId] = sourceClone;
     result[droppableDestination.droppableId] = destClone;
@@ -57,7 +67,6 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
 
-    // dropped outside the list
     if (!destination) {
       return;
     }
@@ -67,46 +76,62 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
     dInd += 1;
 
     if (sInd === dInd) {
-      const reorderedItems = reorder(days[sInd], source.index, destination.index, draggableId);
+      const reorderedItems = reorder(
+        days[sInd],
+        source.index,
+        destination.index,
+        draggableId
+      );
 
-      setDays((previousDays) => ({ ...previousDays, [sInd]: reorderedItems }))
+      setDays((previousDays) => ({ ...previousDays, [sInd]: reorderedItems }));
     } else {
-      const result = move(days[sInd], days[dInd], source, destination, draggableId, dInd);
+      const result = move(
+        days[sInd],
+        days[dInd],
+        source,
+        destination,
+        draggableId,
+        dInd
+      );
 
-      setDays((previousDays) => ({ ...previousDays, [sInd--]: result[sInd], [dInd--]: result[dInd] }));
+      setDays((previousDays) => ({
+        ...previousDays,
+        [sInd--]: result[sInd],
+        [dInd--]: result[dInd],
+      }));
     }
-  }
+  };
   const grid = 8;
 
-  const getListStyle = isDraggingOver => ({
+  const getListStyle = (isDraggingOver) => ({
     background: "white",
     padding: grid,
-    width: '60vh'
+    width: "60vh",
   });
 
-  const userEmail = "test@test.com"
+  const userEmail = "test@test.com";
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [emailRecipients, setEmailRecipients] = useState('')
+  const [emailRecipients, setEmailRecipients] = useState("");
 
   const handleEmailMe = function () {
     setIsModalOpen(true);
-  }
+  };
 
   const handleCloseModal = function () {
     setIsModalOpen(false);
-  }
+  };
 
   const onEmailChange = function (event) {
     event.persist();
-    setEmailRecipients(event.target.value)
-  }
+    setEmailRecipients(event.target.value);
+  };
 
   const handleSendEmail = function (event) {
     event.preventDefault();
     sendEmail(days, emailRecipients);
     setIsModalOpen(false);
-    setEmailRecipients('');
-  }
+    setEmailRecipients("");
+  };
 
   const useStyles = makeStyles((theme) => ({
     button: {
@@ -120,12 +145,10 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
     <div>
       <TopBar heading="Map" action={handleEmailMe} buttonName="Email Me" />
       <Grid container direction="row">
-        <Grid item xs={6} style={{ boxSizing: 'border-box' }}>
-
+        <Grid item xs={6} style={{ boxSizing: "border-box" }}>
           <Map days={days} />
-
         </Grid>
-        <Grid item xs={6} style={{ paddingRight: '2%' }}>
+        <Grid item xs={6} style={{ paddingRight: "2%" }}>
           <DragDropContext onDragEnd={onDragEnd}>
             {Object.keys(days).map((el, ind) => (
               <div className="day-div">
@@ -161,7 +184,13 @@ function MapItinerary({ places, removePlace, tripDuration, handleAsssignDay, sta
         style={modalStyle}
         className="send-email-modal"
       >
-        <button className="close-modal" type="button" onClick={handleCloseModal}>X</button>
+        <button
+          className="close-modal"
+          type="button"
+          onClick={handleCloseModal}
+        >
+          X
+        </button>
         <form className="send-email-form" onSubmit={handleSendEmail}>
           <TextField
             id="email"

@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import auth from '../utils/auth';
-import apiService from './../ApiService';
-import Button from '@material-ui/core/Button';
-import '../styles/auth.css';
-import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
-
+import React, { useState } from "react";
+import auth from "../utils/auth";
+import apiService from "./../ApiService";
+import Button from "@material-ui/core/Button";
+import "../styles/auth.css";
+import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const initialState = {
-  email: '',
-  password: '',
-  firstName: '',
-  lastName: '',
+  email: "",
+  password: "",
+  firstName: "",
+  lastName: "",
 };
 
 const Register = (props) => {
@@ -36,11 +35,9 @@ const Register = (props) => {
       setState(initialState);
     } else {
       const accessToken = res.token;
-      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem("accessToken", accessToken);
       props.setIsAuthenticated(true);
-      // auth.login(() => props.history.push('/home'));
-      auth.login(() => window.location.replace('http://localhost:3000/home'));
-
+      auth.login(() => window.location.assign("http://localhost:3000/home"));
     }
   };
 
@@ -88,7 +85,13 @@ const Register = (props) => {
             onChange={handleChange}
           />
           <br></br>
-          <Button variant="contained" color="primary" className="form-submit" type="submit" disabled={validateForm()}>
+          <Button
+            variant="contained"
+            color="primary"
+            className="form-submit"
+            type="submit"
+            disabled={validateForm()}
+          >
             &nbsp;Register&nbsp;
           </Button>
         </form>
@@ -98,12 +101,14 @@ const Register = (props) => {
           {"Do you already have an account?"}
         </Typography>
         <br></br>
-        <Button 
-            variant="contained" 
-            color="primary" 
-            component={Link}
-            to="/login"
-          > Login 
+        <Button
+          variant="contained"
+          color="primary"
+          component={Link}
+          to="/login"
+        >
+          {" "}
+          Login
         </Button>
         <br></br>
       </div>
