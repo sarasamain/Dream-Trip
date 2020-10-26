@@ -49,4 +49,4 @@ Functional testing was added to the project to help with development of new feat
 # Developer Team
 * Amina Antoniazzi - [Github](https://github.com/amantoniazzi) - [LinkedIn](https://www.linkedin.com/in/amina-antoniazzi-b05266118/)
 * Rushabh Mehta - [Github](https://github.com/RushabhM2) - [LinkedIn](www.linkedin.com/in/RushabhM2)
-* Sara Gomez - [Github](https://github.com/sara-gg) - [LinkedIn](https://www.linkedin.com/in/sara-samain-27721244/)
+* Sara Samain - [Github](https://github.com/sarasamain) - [LinkedIn](https://www.linkedin.com/in/sara-samain-27721244/)
